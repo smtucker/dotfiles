@@ -1,3 +1,3 @@
 #!/bin/bash
 
-export $ZDOTDIR="$HOME/.config/zsh/"
+export ZDOTDIR="${ZDOTDIR:-"$HOME/.config/zsh"}"
