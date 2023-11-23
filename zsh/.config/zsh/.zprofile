@@ -1,8 +1,10 @@
 #!/bin/bash
 
-if [ -f $HOME/bin/ssh-agent-manager.sh ]
+FILE="$HOME/.local/bin/ssh-agent-manager"
+
+if [ -e "$FILE" ]
 then 
-  . $HOME/bin/ssh-agent-manager.ssh 
+  . $FILE
 else
   echo "ssh-agent-manager not found, no ssh keys loaded"
 fi 

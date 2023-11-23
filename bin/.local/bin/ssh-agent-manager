@@ -1,0 +1,44 @@
+#!/bin/bash
+# SSH agent
+ssh_pid_file="$HOME/.ssh/ssh-agent.pid"
+SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent.sock"
+
+start_agent () {
+	# the agent is not running, start it
+	rm "$ssh_pid_file" &> /dev/null
+  eval "$(ssh-agent -s -a "$SSH_AUTH_SOCK")" > /dev/null 2>&1
+	echo "$SSH_AGENT_PID" > "$ssh_pid_file"
+	ssh-add -A 2>/dev/null >&2 
+}
+
+check_for_agent () {
+  if [ -z "$SSH_AGENT_PID" ]; then
+    return 1
+  else
+    if kill -0 "$SSH_AGENT_PID" > /dev/null 2>&1; then
+      return 0
+    else
+      return 2
+    fi 
+  fi 
+}
+
+if [ -e "$ssh_pid_file" ]; then
+  saved_pid=$(cat "$ssh_pid_file")
+  if kill -0 "$saved_pid" > /dev/null 2>&1; then
+    if ! [ "$SSH_AGENT_PID" = "$saved_pid" ]; then
+      if check_for_agent; then
+        kill "$SSH_AGENT_PID" > /dev/null 2>&1
+      fi
+      SSH_AGENT_PID="$saved_pid"
+    fi
+  else
+    start_agent
+  fi
+else
+  start_agent
+fi
+
+export SSH_AGENT_PID
+export SSH_AUTH_SOCK
+
