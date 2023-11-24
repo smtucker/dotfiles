@@ -111,3 +111,7 @@ unalias run-help
 autoload run-help
 HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
 alias help=run-help
+
+alias l="lsd"
+alias la='lsd -a'
+alias lla='lsd -la'
