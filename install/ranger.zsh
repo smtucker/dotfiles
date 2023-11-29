@@ -1,7 +1,13 @@
 #!/bin/bash
 
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+rfolder="$HOME/.config/ranger"
+tplug="$rfolder/plugins"
 
-echo "default_linemode devicons" >> $HOME/.config/ranger/rc.config
+if ! [ -d "$tplug/ranger_devicons" ]; then
+  git clone https://github.com/alexanderjeurissen/ranger_devicons $tplug/ranger_devicons
+  echo "default_linemode devicons" >> $rfolder/rc.config
+fi
 
-git clone https://github.com/joouha/ranger_tmux
+#if ! [ -d "$tplug/ranger_tmux" ]; then
+#  git clone https://github.com/joouha/ranger_tmux $tplug/ranger_tmux
+#fi
