@@ -23,7 +23,6 @@ local sources = {
   
   -- Linters
   b.diagnostics.gospel,
-  b.diagnostics.luacheck,
   b.diagnostics.markdownlint,
   b.diagnostics.pylint,
   b.diagnostics.revive,

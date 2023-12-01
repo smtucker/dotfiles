@@ -32,7 +32,6 @@ M.mason = {
     -- lua stuff
     "lua-language-server",
     "stylua",
-    "luacheck",
 
     -- web dev stuff
     "css-lsp",
