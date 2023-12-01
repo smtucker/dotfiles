@@ -32,6 +32,7 @@ M.mason = {
     -- lua stuff
     "lua-language-server",
     "stylua",
+    "luacheck",
 
     -- web dev stuff
     "css-lsp",
@@ -45,10 +46,15 @@ M.mason = {
     "clang-format",
 
     "gopls",
+    "goimports", -- Automatically modify import table
     "revive", -- Gofmt
     "delve", -- Go debugger
+    "gomodifytags",
+    "impl",
 
     "pyright",
+
+    "shellcheck",
 
   },
 }
