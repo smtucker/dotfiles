@@ -52,7 +52,7 @@ M.mason = {
     "impl",
 
     "pyright",
-
+    "beautysh", -- Shell formatter
     "shellcheck",
 
   },
