@@ -51,6 +51,7 @@ M.mason = {
     "delve", -- Go debugger
     "gomodifytags",
     "impl",
+    "gospel",
 
     "pyright",
     "beautysh", -- Shell formatter
