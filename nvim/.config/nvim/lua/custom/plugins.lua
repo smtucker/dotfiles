@@ -40,6 +40,10 @@ local plugins = {
 
   -- Install a plugin
   {
+    "tpope/vim-fugitive",
+    cmd = "Git"
+  },
+  {
     "zane-/cder.nvim",
     config = function()
       require("telescope").load_extension('cder')
