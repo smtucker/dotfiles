@@ -51,6 +51,17 @@ local plugins = {
     "rhysd/committia.vim",
   },
   {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+  },
+  {
+    "yorickpeterse/nvim-pqf",
+    ft = "qf",
+    init = function()
+      require("pqf").setup()
+    end
+  },
+  {
     "zane-/cder.nvim",
     config = function()
       require("telescope").load_extension('cder')
