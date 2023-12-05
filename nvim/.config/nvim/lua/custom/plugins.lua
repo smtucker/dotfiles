@@ -44,6 +44,10 @@ local plugins = {
     cmd = "Git"
   },
   {
+    "sindrets/diffview.nvim",
+    cmd = "DiffviewOpen",
+  },
+  {
     "zane-/cder.nvim",
     config = function()
       require("telescope").load_extension('cder')
