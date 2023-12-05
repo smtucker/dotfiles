@@ -48,6 +48,9 @@ local plugins = {
     cmd = "DiffviewOpen",
   },
   {
+    "rhysd/committia.vim",
+  },
+  {
     "zane-/cder.nvim",
     config = function()
       require("telescope").load_extension('cder')
