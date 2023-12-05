@@ -6,6 +6,7 @@ local autocmd = vim.api.nvim_create_autocmd
 --   command = "tabdo wincmd =",
 -- })
 
+-- Close vim if only the tree is open
 autocmd("BufEnter", {
   pattern = "*",
   command = "if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif",
