@@ -37,6 +37,10 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = overrides.nvimcmp,
+  },
 
   -- Install a plugin
   {
@@ -99,12 +103,18 @@ local plugins = {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    lazy = false,
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({})
+      require("copilot").setup({
+        suggestion = { enabled = false }, -- So that copilot-cmp can do it
+        panel = { enabled = false }, -- Ditto
+        filetypes = {
+          go = true,
+          python = true,
+          lua = true,
+        }
+      })
     end,
-    opts = overrides.copilot,
   },
 
   {

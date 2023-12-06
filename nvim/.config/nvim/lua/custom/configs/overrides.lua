@@ -1,5 +1,9 @@
 local M = {}
 
+local cmp = require "cmp"
+
+dofile(vim.g.base46_cache .. "cmp")
+
 M.treesitter = {
   ensure_installed = {
     "vim",
@@ -60,6 +64,29 @@ M.mason = {
   },
 }
 
+M.nvimcmp = {
+  sources = {
+    { name = "copilot" },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "nvim_lua" },
+    { name = "path" },
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-l>"] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,},
+    ["<CR>"] = {},
+    }),
+}
+
 -- git support in nvimtree
 M.nvimtree = {
   git = {
@@ -72,17 +99,6 @@ M.nvimtree = {
         git = true,
       },
     },
-  },
-}
-
-M.copilot = {
-  -- Possible configurable fields can be found on:
-  -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
-  suggestion = {
-    enable = false,
-  },
-  panel = {
-    enable = false,
   },
 }
 
