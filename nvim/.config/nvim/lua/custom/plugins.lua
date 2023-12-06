@@ -44,6 +44,10 @@ local plugins = {
 
   -- Install a plugin
   {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
     "tpope/vim-fugitive",
     cmd = "Git"
   },
