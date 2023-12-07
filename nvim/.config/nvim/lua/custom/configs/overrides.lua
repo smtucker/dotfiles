@@ -66,6 +66,10 @@ M.mason = {
 }
 
 M.nvimcmp = {
+  preselect = cmp.PreselectMode.None,
+  completion = {
+    completeopt = "menu,menuone,noinsert,noselect",
+  },
   sources = {
     { name = "copilot" },
     { name = "nvim_lsp" },
@@ -81,10 +85,9 @@ M.nvimcmp = {
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<C-l>"] = cmp.mapping.confirm {
+    ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
-      select = true,},
-    ["<CR>"] = {},
+      select = false,},
     }),
 }
 
