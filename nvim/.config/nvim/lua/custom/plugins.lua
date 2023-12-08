@@ -1,4 +1,3 @@
-local overrides = require("custom.configs.overrides")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -25,21 +24,21 @@ local plugins = {
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = require "custom.configs.mason"
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
+    opts = require "custom.configs.treesitter",
   },
 
   {
     "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
+    opts = require "custom.configs.nvimtree",
   },
   {
     "hrsh7th/nvim-cmp",
-    opts = overrides.nvimcmp,
+    opts = require "custom.configs.nvimcmp"
   },
 
   -- Install a plugin
@@ -72,27 +71,7 @@ local plugins = {
   {
     "zane-/cder.nvim",
     config = function()
-      require("telescope").load_extension('cder')
-      require("telescope").setup({
-        extensions = {
-          cder = {
-            previewer_command = "exa -a -T --level=3 --git --git-ignore" ..
-              " --long --no-permissions --no-user --color=always --icons" ..
-              " --no-filesize --ignore-glob=.git",
-            pager_command = "bat --pager=never --style=plain --color=always",
-            entry_maker = function(line)
-              return {
-                value = line,
-                display = function(entry)
-                  return ' ' .. line:gsub(os.getenv('HOME') .. '/', ''),
-                    { { { 1, 3 }, 'Directory' } }
-                end,
-                ordinal = line,
-              }
-            end,
-          },
-        },
-      })
+      require "custom.configs.cder"
     end
   },
 
@@ -109,15 +88,7 @@ local plugins = {
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false }, -- So that copilot-cmp can do it
-        panel = { enabled = false }, -- Ditto
-        filetypes = {
-          go = true,
-          python = true,
-          lua = true,
-        }
-      })
+      require "custom.configs.copilot"
     end,
   },
 
