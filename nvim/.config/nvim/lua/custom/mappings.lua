@@ -17,6 +17,15 @@ M.telescope = {
   },
 }
 
+M.diffview = {
+  n = {
+    ["<leader>gd"] = {"<cmd> DiffviewOpen <CR>", "Diffview Open"},
+    ["<leader>gc"] = {"<cmd> DiffviewClose <CR>", "Diffview Close"},
+    ["<leader>gh"] = {"<cmd> DiffviewFileHistory <CR>", "Diffview File History"},
+    ["<leader>gb"] = {"<cmd> DiffviewToggleFiles <CR>", "Diffview Toggle Files"},
+    ["<leader>gr"] = {"<cmd> DiffviewRefresh <CR>", "Diffview Refresh"},
+  },
+}
 -- more keybinds!
 
 return M
