@@ -45,6 +45,16 @@ local plugins = {
     opts = require "custom.configs.telescope"
   },
   -- Install a plugin
+  { "folke/neodev.nvim", opts = {} },
+  {
+    "mfussenegger/nvim-dap",
+  },
+  {
+    "leoluz/nvim-dap-go",
+  },
+  {
+    "rcarriga/nvim-dap-ui"
+  },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
