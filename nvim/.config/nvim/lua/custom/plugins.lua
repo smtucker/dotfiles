@@ -45,7 +45,9 @@ local plugins = {
     opts = require "custom.configs.telescope"
   },
   -- Install a plugin
-  { "folke/neodev.nvim", opts = {} },
+  { "folke/neodev.nvim", opts = {} }, -- Loads vim API into lua lsp
+
+  -- Debugging
   {
     "mfussenegger/nvim-dap",
   },
@@ -55,10 +57,13 @@ local plugins = {
   {
     "rcarriga/nvim-dap-ui"
   },
+
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
+
+  -- Git integration
   {
     "tpope/vim-fugitive",
     cmd = "Git"
@@ -70,6 +75,8 @@ local plugins = {
   {
     "rhysd/committia.vim",
   },
+
+  -- Spruce up the quickfix list
   {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
@@ -81,6 +88,8 @@ local plugins = {
       require("pqf").setup()
     end
   },
+
+  -- Enables :Telescope cder, which changes working directory
   {
     "zane-/cder.nvim",
     config = function()
@@ -96,6 +105,7 @@ local plugins = {
     end,
   },
 
+  -- Copilot stuff
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -104,7 +114,6 @@ local plugins = {
       require "custom.configs.copilot"
     end,
   },
-
   {
     "zbirenbaum/copilot-cmp",
     lazy = false,
