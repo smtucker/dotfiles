@@ -40,7 +40,10 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     opts = require "custom.configs.nvimcmp"
   },
-
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = require "custom.configs.telescope"
+  },
   -- Install a plugin
   {
     "folke/trouble.nvim",
