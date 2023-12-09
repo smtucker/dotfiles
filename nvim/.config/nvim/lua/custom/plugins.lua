@@ -74,6 +74,7 @@ local plugins = {
   },
   {
     "rhysd/committia.vim",
+    ft = "gitcommit",
   },
 
   -- Spruce up the quickfix list
