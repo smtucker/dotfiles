@@ -45,19 +45,34 @@ local plugins = {
     opts = require "custom.configs.telescope"
   },
   -- Install a plugin
-  { "folke/neodev.nvim", opts = {} }, -- Loads vim API into lua lsp
+  { "folke/neodev.nvim", opts = {
+    library = {
+      plugins = { "nvim-dap-ui" },
+      types = true,
+      }
+    },
+  }, -- Loads vim API into lua lsp
 
   -- Debugging
   {
     "mfussenegger/nvim-dap",
+    config = function()
+      require "custom.configs.dap"
+    end,
   },
   {
     "leoluz/nvim-dap-go",
+    ft = "go",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("dap-go").setup()
+    end,
   },
   {
-    "rcarriga/nvim-dap-ui"
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap",
+      "folke/trouble.nvim" },
   },
-
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
