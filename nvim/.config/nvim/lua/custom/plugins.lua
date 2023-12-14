@@ -58,6 +58,7 @@ local plugins = {
     "mfussenegger/nvim-dap",
     config = function()
       require "custom.configs.dap"
+      require("dapui").setup()
     end,
   },
   {
@@ -69,9 +70,20 @@ local plugins = {
     end,
   },
   {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("dap-python").setup()
+    end,
+  },
+  {
     "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap",
-      "folke/trouble.nvim" },
+    dependencies = { 
+      "mfussenegger/nvim-dap",
+      "folke/trouble.nvim",
+      "folke/neodev.nvim",
+    },
   },
   {
     "folke/trouble.nvim",

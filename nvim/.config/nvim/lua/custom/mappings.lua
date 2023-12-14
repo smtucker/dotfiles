@@ -26,6 +26,22 @@ M.diffview = {
     ["<leader>gr"] = {"<cmd> DiffviewRefresh <CR>", "Diffview Refresh"},
   },
 }
+
+M.dap = {
+  n = {
+    ["<leader>dc"] = {"<cmd> lua require('dap').continue()<CR>", "DAP Continue"},
+    ["<leader>dx"] = {"<cmd> lua require('dap').terminate()<CR>", "DAP Terminate"},
+    ["<leader>dr"] = {"<cmd> lua require('dap').repl.open()<CR>", "DAP REPL"},
+    ["<leader>db"] = {"<cmd> lua require('dap').toggle_breakpoint()<CR>", "DAP Toggle Breakpoint"},
+    ["<leader>dl"] = {"<cmd> lua require('dap').list_breakpoints()<CR>", "DAP List Break Points"},
+    ["<leader>ds"] = {"<cmd> lua require('dap').step_over()<CR>", "DAP Step Over"},
+    ["<leader>di"] = {"<cmd> lua require('dap').step_into()<CR>", "DAP Step Into"},
+    ["<leader>do"] = {"<cmd> lua require('dap').step_out()<CR>", "DAP Step Out"},
+    ["<leader>du"] = {"<cmd> lua require('dapui').toggle()<CR>", "DAP Toggle UI"},
+    ["<leader>dp"] = {"<cmd> lua require('dapui').float_element()<CR>", "DAP Float Element"},
+  },
+}
+
 -- more keybinds!
 
 return M
