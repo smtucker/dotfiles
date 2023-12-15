@@ -25,6 +25,8 @@ local M = {
     "gospel",
 
     "pyright",
+    "pylint",
+
     "beautysh", -- Shell formatter
     "shellcheck",
 
