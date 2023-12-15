@@ -138,6 +138,10 @@ function cd() {
   fi
 }
 
+function fzd() {
+  cd "$(fd --type directory | fzf)"
+}
+
 function man() {
 	env \
 		LESS_TERMCAP_md=$(tput bold; tput setaf 4) \
