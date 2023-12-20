@@ -44,7 +44,15 @@ local plugins = {
     "nvim-telescope/telescope.nvim",
     opts = require "custom.configs.telescope"
   },
-  -- Install a plugin
+
+  -- General
+  {
+    "matbme/JABS.nvim",
+    cmd = "JABSOpen",
+    config = function()
+      require("jabs").setup()
+    end,
+  },
   { "folke/neodev.nvim", opts = {
     library = {
       plugins = { "nvim-dap-ui" },
