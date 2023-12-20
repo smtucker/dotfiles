@@ -94,7 +94,7 @@ local plugins = {
   },
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = { 
+    dependencies = {
       "mfussenegger/nvim-dap",
       "folke/trouble.nvim",
       "folke/neodev.nvim",
@@ -103,6 +103,10 @@ local plugins = {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "TroubleToggle",
+    opts = {
+      mode = "document_diagnostics",
+    },
   },
 
   -- Git integration
