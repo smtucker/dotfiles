@@ -139,7 +139,7 @@ function cd() {
 }
 
 function fzd() {
-  cd "$(fd --type directory | fzf)"
+  cd "$(fd --type directory --hidden --exclude .git | fzf)"
 }
 
 function man() {
