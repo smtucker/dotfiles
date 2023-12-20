@@ -52,6 +52,13 @@ local plugins = {
       }
     },
   }, -- Loads vim API into lua lsp
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+    config = function()
+      require "custom.configs.auto-session"
+    end,
+  },
 
   -- Debugging
   {
