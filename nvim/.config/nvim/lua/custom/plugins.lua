@@ -67,7 +67,12 @@ local plugins = {
       require "custom.configs.auto-session"
     end,
   },
-
+  {
+    "ggandor/leap.nvim",
+    init = function ()
+      require('leap').add_default_mappings()
+    end,
+  },
   -- Debugging
   {
     "mfussenegger/nvim-dap",
