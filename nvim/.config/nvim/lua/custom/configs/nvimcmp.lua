@@ -9,6 +9,7 @@ local M = {
   },
   sources = {
     { name = "copilot" },
+    { name = "neorg" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
