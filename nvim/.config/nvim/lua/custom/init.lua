@@ -1,4 +1,4 @@
-local autocmd = vim.api.nvim_create_autocmd
+-- local autocmd = vim.api.nvim_create_autocmd
 
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {
@@ -7,10 +7,10 @@ local autocmd = vim.api.nvim_create_autocmd
 -- })
 
 -- Close vim if only the tree is open
-autocmd("BufEnter", {
-  pattern = "*",
-  command = "if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif",
-})
+-- autocmd("BufEnter", {
+  -- pattern = "*",
+  -- command = "if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif",
+-- })
 
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.norg"},
