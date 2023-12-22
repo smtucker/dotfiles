@@ -14,6 +14,15 @@ M.disabled = {
     ["<leader>pt"] = "", -- Pick hidden term
     ["<leader>th"] = "", -- Pich theme
     ["<leader>ma"] = "", -- Telescope marks
+    ["<leader>n"] = "", -- Toggle line numbers (Why ever turn that off?)
+  }
+}
+
+M.neorg = {
+  n = {
+    ["<leader>ni"] = {"<cmd> Neorg index <CR>", "Neorg index"},
+    ["<leader>nr"] = {require("custom.functions").neorg_return, "Neorg return"},
+    ["<leader>nc"] = {"<cmd> Neorg toggle-concealer <CR>", "Neorg toggle concealer"},
   }
 }
 
