@@ -23,6 +23,8 @@ M.neorg = {
     ["<leader>ni"] = {"<cmd> Neorg index <CR>", "Neorg index"},
     ["<leader>nr"] = {require("custom.functions").neorg_return, "Neorg return"},
     ["<leader>nc"] = {"<cmd> Neorg toggle-concealer <CR>", "Neorg toggle concealer"},
+    ["[h"] = {"<cmd> Neorg keybind norg core.integrations.treesitter.next.heading <CR>", "Next norg heading"},
+    ["]h"] = {"<cmd> Neorg keybind norg core.integrations.treesitter.previous.heading <CR>", "Previous norg heading"},
   }
 }
 
