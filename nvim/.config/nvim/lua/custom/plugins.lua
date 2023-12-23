@@ -38,6 +38,12 @@ local plugins = {
 	{
 		"hrsh7th/nvim-cmp",
 		opts = require("custom.configs.nvimcmp"),
+    dependencies = {
+      "hrsh7th/cmp-cmdline",
+    },
+    init = function()
+      require("custom.configs.cmpcmdline")
+    end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
