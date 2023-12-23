@@ -15,5 +15,6 @@ require("neorg").setup {
         engine = "nvim-cmp",
       },
     },
+    ["core.summary"] = {},
   },
 }
