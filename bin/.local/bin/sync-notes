@@ -1,0 +1,33 @@
+#!/bin/bash
+
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+print_usage() {
+  echo "Usage: $0 <up|down|dry>"
+  echo "  up:    Send notes to server"
+  echo "  down:  Grab notes from server"
+  echo "  dry:   Dry run sending and grabbing"
+}
+
+case $1 in
+  "up")
+    echo -e "${CYAN}Sending notes to server...${NC}"
+    rsync -avzP --delete ~/notes/ admin@smtucker.dev:~/notes
+    ;;
+  "down")
+    echo -e "${CYAN}Grabing notes from server...${NC}"
+    rsync -avzP --delete admin@smtucker.dev:~/notes/ ~/notes
+    ;;
+  "dry")
+    echo -e "\n${CYAN}Dry run sending...${NC}\n"
+    rsync -avzn --stats --delete ~/notes/ admin@smtucker.dev:~/notes
+    echo -e "\n\n${CYAN}Dry run grabbing...\n${NC}"
+    rsync -avzn --stats --delete admin@smtucker.dev:~/notes/ ~/notes
+    ;;
+  *)
+    echo "Unknown option: $1"
+    print_usage
+    ;;
+esac
+
