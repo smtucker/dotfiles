@@ -8,7 +8,8 @@ local M = {
       '--line-number',
       '--column',
       '--smart-case',
-      '-uu'
+      '-uu',
+      '--glob=!.git/',
     },
   },
 }
