@@ -10,10 +10,10 @@ end
 
 require("auto-session").setup {
   log_level = "error",
-  pre_save_cmds = {close_nvim_tree},
-  post_save_cmds = {open_nvim_tree},
-  post_open_cmds = {open_nvim_tree},
-  post_restore_cmds = {open_nvim_tree},
+  -- pre_save_cmds = {close_nvim_tree},
+  -- post_save_cmds = {open_nvim_tree},
+  -- post_open_cmds = {open_nvim_tree},
+  -- post_restore_cmds = {open_nvim_tree},
   cwd_change_handling = {
     restore_upcoming_session = true, -- <-- THE DOCS LIE!! This is necessary!!
   },
@@ -29,3 +29,17 @@ require("auto-session").setup {
 require("telescope").load_extension("session-lens")
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+
+
+local autocmd = vim.api.nvim_create_autocmd
+-- restore nvim-tree with auto-session
+autocmd({ "BufEnter" }, {
+  pattern = "NvimTree*",
+  callback = function()
+    local view = require "nvim-tree.view"
+
+    if not view.is_visible() then
+      api.tree.open()
+    end
+  end,
+})
