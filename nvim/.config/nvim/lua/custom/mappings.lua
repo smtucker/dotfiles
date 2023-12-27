@@ -69,6 +69,7 @@ M.telescope = {
     ["<leader>ft"] = {"<cmd> Telescope <CR>", "Telescope builtins"},
     ["<leader>fm"] = {"<cmd> Telescope marks <CR>", "Telescope marks"},
     ["<leader>fT"] = {"<cmd> Telescope themes <CR>", "Telescope Themes"},
+    ["<leader>fs"] = {"<cmd> Telescope session-lens <CR>", "Session select"},
   },
 }
 

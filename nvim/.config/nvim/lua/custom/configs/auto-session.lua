@@ -17,6 +17,15 @@ require("auto-session").setup {
   cwd_change_handling = {
     restore_upcoming_session = true, -- <-- THE DOCS LIE!! This is necessary!!
   },
+  session_lens = {
+    -- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
+    buftypes_to_ignore = {}, -- list of buffer types what should not be deleted from current session
+    load_on_setup = true,
+    theme_conf = { border = true },
+    previewer = false,
+  },
 }
+
+require("telescope").load_extension("session-lens")
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
