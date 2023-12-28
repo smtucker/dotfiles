@@ -72,7 +72,6 @@ ZSH_THEME="eastwood"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(systemd zsh-autosuggestions zsh-syntax-highlighting)
-bindkey '^ ' autosuggest-accept
 
 source $ZSH/oh-my-zsh.sh
 eval "$(starship init zsh)"
@@ -85,6 +84,7 @@ source $ZSH/custom/plugins/znap/znap.zsh  # Start Znap
 
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+bindkey '^ ' autosuggest-accept
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
