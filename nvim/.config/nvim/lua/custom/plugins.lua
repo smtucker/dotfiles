@@ -70,6 +70,9 @@ local plugins = {
 	{
 		"rmagatti/auto-session",
 		lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
 		config = function()
 			require("custom.configs.auto-session")
 		end,
