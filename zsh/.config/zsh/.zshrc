@@ -141,7 +141,11 @@ function cd() {
 }
 
 function fzd() {
-  cd "$(fd --type directory --hidden --exclude .git | fzf)"
+  if [[ -z "$1" ]]; then
+    cd "$(fd --type directory --hidden --exclude .git | fzf)"
+  else
+    cd "$(fd --type directory --hidden --exclude .git . "$1" | fzf)"
+  fi
 }
 
 function man() {
