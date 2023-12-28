@@ -6,6 +6,7 @@ SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent.sock"
 start_agent () {
 	# the agent is not running, start it
 	rm "$ssh_pid_file" &> /dev/null
+  rm "$SSH_AUTH_SOCK" &> /dev/null
   eval "$(ssh-agent -s -a "$SSH_AUTH_SOCK")" > /dev/null 2>&1
 	echo "$SSH_AGENT_PID" > "$ssh_pid_file"
 	ssh-add -A 2>/dev/null >&2 
