@@ -110,7 +110,9 @@ source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-unalias run-help
+if alias run-help >/dev/null 2>&1; then
+  unalias run-help
+fi
 autoload run-help
 HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
 alias help=run-help
