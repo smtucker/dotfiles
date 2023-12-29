@@ -141,6 +141,11 @@ function cd() {
   fi
 }
 
+if command -v fdfind; then
+  # Distro has fdfind installed alias it
+  alias fd="fdfind"
+fi
+
 function fzd() {
   if [[ -z "$1" ]]; then
     cd "$(fd --type directory --hidden --exclude .git | fzf)"
