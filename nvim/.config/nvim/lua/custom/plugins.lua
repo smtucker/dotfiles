@@ -68,16 +68,6 @@ local plugins = {
 		},
 	}, -- Loads vim API into lua lsp
 	{
-		"rmagatti/auto-session",
-		lazy = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-		config = function()
-			require("custom.configs.auto-session")
-		end,
-	},
-	{
 		"ggandor/leap.nvim",
 		init = function()
 			require("leap").add_default_mappings()
