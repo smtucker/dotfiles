@@ -141,7 +141,7 @@ function cd() {
   fi
 }
 
-if command -v fdfind; then
+if command -v fdfind > /dev/null 2>&1; then
   # Distro has fdfind installed alias it
   alias fd="fdfind"
 fi
