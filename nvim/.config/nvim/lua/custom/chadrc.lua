@@ -10,6 +10,12 @@ M.ui = {
 
   hl_override = highlights.override,
   hl_add = highlights.add,
+
+  extended_integrations = {
+    "trouble",
+    "dap",
+
+  }
 }
 
 M.plugins = "custom.plugins"
