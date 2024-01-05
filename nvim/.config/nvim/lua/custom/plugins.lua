@@ -121,7 +121,7 @@ local plugins = {
           "NvimTreeNormal",
           "NvimTreeNormalNC",
           "NvimTreeEndOfBuffer",
-          "NvimTreeWindowSeparator",
+          "NvimTreeWinSeparator",
         },
       })
     end,
