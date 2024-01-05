@@ -119,6 +119,7 @@ local plugins = {
       require("transparent").setup({
         extra_groups = {
           "NvimTreeNormal",
+          "NvimTreeNormalNC",
           "NvimTreeEndOfBuffer",
           "NvimTreeWindowSeparator",
         },
