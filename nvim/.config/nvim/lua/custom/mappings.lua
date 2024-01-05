@@ -2,6 +2,7 @@
 local M = {}
 
 M.disabled = {
+  
   n = {
     ["<leader>D"] = "",
     ["<leader>td"] = "", -- Gitsigns toggle delete
@@ -53,6 +54,7 @@ M.general = {
       end,
       "LSP formatting",
     },
+    ["<leader>ot"] = {"<cmd>TransparentToggle <CR>", "Toggle Transparency"},
   },
   v = {
     [">"] = { ">gv", "indent"},

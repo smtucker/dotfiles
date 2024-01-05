@@ -117,11 +117,11 @@ local plugins = {
     "xiyaowong/transparent.nvim",
     config = function()
       require("transparent").setup({
-        enable = true,
         extra_groups = {
           "NvimTreeNormal",
+          "NvimTreeEndOfBuffer",
+          "NvimTreeWindowSeparator",
         },
-        exclude = {},
       })
     end,
     cmd = "TransparentToggle",
