@@ -85,6 +85,8 @@ source $ZSH/custom/plugins/znap/znap.zsh  # Start Znap
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey '^ ' autosuggest-accept
+
+eval "$(zoxide init zsh)"
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
