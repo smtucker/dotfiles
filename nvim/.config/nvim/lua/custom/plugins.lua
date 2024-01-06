@@ -113,20 +113,6 @@ local plugins = {
     require("custom.configs.neorg")
   end,
   },
-  {
-    "xiyaowong/transparent.nvim",
-    config = function()
-      require("transparent").setup({
-        extra_groups = {
-          "NvimTreeNormal",
-          "NvimTreeNormalNC",
-          "NvimTreeEndOfBuffer",
-          "NvimTreeWinSeparator",
-        },
-      })
-    end,
-    cmd = "TransparentToggle",
-  },
 	-- Debugging
 	{
 		"mfussenegger/nvim-dap",

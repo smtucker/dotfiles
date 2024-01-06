@@ -54,7 +54,7 @@ M.general = {
       end,
       "LSP formatting",
     },
-    ["<leader>ot"] = {"<cmd>TransparentToggle <CR>", "Toggle Transparency"},
+    ["<leader>ot"] = { function() require("base46").toggle_transparency() end, "Toggle Transparency" },
   },
   v = {
     [">"] = { ">gv", "indent"},
