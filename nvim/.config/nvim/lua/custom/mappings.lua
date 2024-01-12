@@ -108,19 +108,47 @@ M.dap = {
 
 M.gitsigns = {
   n = {
-
     ["<leader>gr"] = {
       function()
         require("gitsigns").reset_hunk()
       end,
       "Reset hunk",
     },
-
     ["<leader>gp"] = {
       function()
         require("gitsigns").preview_hunk()
       end,
       "Preview hunk",
+    },
+    ["<leader>gs"] = {
+      function()
+      require("gitsigns").stage_hunk()
+      end,
+      "Stage hunk",
+    },
+    ["<leader>gu"] = {
+      function()
+      require("gitsigns").undo_stage_hunk()
+      end,
+      "Undo stage hunk",
+    },
+    ["<leader>gt"] = {
+      function()
+      require("gitsigns").toggle_current_line_blame()
+      end,
+      "Toggle current line blame",
+    },
+    ["<leader>gl"] = {
+      function()
+      require("gitsigns").blame_line()
+      end,
+      "Blame line",
+    },
+    ["<leader>gq"] = {
+      function()
+      require("gitsigns").setqflist()
+      end,
+      "Hunks to quickfix",
     },
   },
 }
