@@ -22,6 +22,22 @@ local plugins = {
 
 	-- override plugin configs
 	{
+		"NvChad/nvterm",
+		opts = {
+      terminals = {
+        type_opts = {
+          float = {
+            row = .2,
+            col = .15,
+            width = 0.7,
+            height = 0.6,
+          },
+        },
+      },
+		},
+	},
+
+	{
 		"williamboman/mason.nvim",
 		opts = require("custom.configs.mason"),
 	},
