@@ -21,6 +21,9 @@ M.disabled = {
 
 M.neorg = {
   n = {
+    ["<leader>njt"] = {"<cmd> Neorg journal today <Cr>", "Today's journal"},
+    ["<leader>njy"] = {"<cmd> Neorg journal yesterday <Cr>", "Yesterday's journal"},
+    ["<leader>njT"] = {"<cmd> Neorg journal yesterday <Cr>", "Tomorrow's journal"},
     ["<leader>ni"] = {"<cmd> Neorg index <CR>", "Neorg index"},
     ["<leader>nr"] = {require("custom.functions").neorg_return, "Neorg return"},
     ["<leader>nc"] = {"<cmd> Neorg toggle-concealer <CR>", "Neorg toggle concealer"},
@@ -72,6 +75,7 @@ M.telescope = {
     ["<leader>fm"] = {"<cmd> Telescope marks <CR>", "Telescope marks"},
     ["<leader>fT"] = {"<cmd> Telescope themes <CR>", "Telescope Themes"},
     ["<leader>fs"] = {"<cmd> Telescope session-lens <CR>", "Session select"},
+    ["<leader>fn"] = {"<cmd> Telescope find_files search_dirs=~/notes <CR>", "Telescope notes"},
   },
 }
 
