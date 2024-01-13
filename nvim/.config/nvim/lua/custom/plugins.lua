@@ -119,17 +119,17 @@ local plugins = {
 		end,
 		ft = { "go", "python", "lua", "rust", "c", "cpp" },
 	},
-  {
-    "nvim-neorg/neorg",
-    dir = "~/code/neorg/",
-    build = ":Neorg sync-parsers",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    ft = "norg",
-    cmd = "Neorg",
-    config = function()
-      require("custom.configs.neorg")
-    end,
-  },
+	{
+		"nvim-neorg/neorg",
+		dir = "~/code/neorg/",
+		build = ":Neorg sync-parsers",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		ft = "norg",
+		cmd = "Neorg",
+		config = function()
+			require("custom.configs.neorg")
+		end,
+	},
 	-- Debugging
 	{
 		"mfussenegger/nvim-dap",
