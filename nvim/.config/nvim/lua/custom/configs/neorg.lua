@@ -25,6 +25,13 @@ require("neorg").setup {
         engine = "nvim-cmp",
       },
     },
-    ["core.summary"] = {},
+    ["core.summary"] = {
+      config = {
+        excluded = {
+          "journal",
+          "uncategorised",
+        },
+      },
+    },
   },
 }
