@@ -67,6 +67,9 @@ local plugins = {
 	},
 
 	-- General
+  {
+    dir = "~/code/autodircmds/",
+  },
 	{
 		"matbme/JABS.nvim",
 		cmd = "JABSOpen",
