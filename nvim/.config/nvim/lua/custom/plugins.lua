@@ -54,6 +54,10 @@ local plugins = {
 	{
 		"hrsh7th/nvim-cmp",
 		opts = require("custom.configs.nvimcmp"),
+    event = {
+      "InsertEnter",
+      "CmdlineEnter",
+    },
 		dependencies = {
 			"hrsh7th/cmp-cmdline",
 		},
@@ -69,6 +73,22 @@ local plugins = {
 	-- General
   {
     dir = "~/code/autodircmds/",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      log_level = "debug",
+      dirs = {
+        {
+          "~/notes",
+          postwrite = "!sync-notes up %"
+        },
+      },
+    },
+    lazy = false,
+    -- config = function()
+    --   require("autodircmds").setup()
+    -- end,
   },
 	{
 		"matbme/JABS.nvim",
