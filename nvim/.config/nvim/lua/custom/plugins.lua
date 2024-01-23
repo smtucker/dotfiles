@@ -81,7 +81,8 @@ local plugins = {
       dirs = {
         {
           "~/notes",
-          postwrite = "!sync-notes up %"
+          preopen = "!sync-notes down %",
+          postwrite = "!sync-notes up %",
         },
       },
     },
