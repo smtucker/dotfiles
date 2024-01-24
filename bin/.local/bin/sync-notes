@@ -1,7 +1,8 @@
 #!/bin/bash
 
-CYAN='\033[0;36m'
-NC='\033[0m'
+# CYAN='\033[0;36m'
+# NC='\033[0m'
+# TODO: Add colors back with arugment to disable
 
 print_usage() {
   echo "Usage: $0 <up|down|dry> [file]"
@@ -14,20 +15,18 @@ print_usage() {
 FILE=""
 # Check if file is specified
 if [ -n "$2" ]; then
-  echo "Argument given: $2"
   # Strip file of leading directory up to notes
   FILE="/${2#*notes/}"
-  echo "File: $FILE"
 fi
+
+VERBOSE=""
 
 case $1 in
   "up")
-    echo -e "${CYAN}Sending notes$FILE to server...${NC}"
-    rsync -avzuP --delete ~/notes/$FILE admin@smtucker.dev:~/notes$FILE
+    rsync -azuP$VERBOSE --delete ~/notes/$FILE admin@smtucker.dev:~/notes$FILE
     ;;
   "down")
-    echo -e "${CYAN}Grabing notes$FILE from server...${NC}"
-    rsync -avzuP --delete admin@smtucker.dev:~/notes/$FILE ~/notes$FILE
+    rsync -azuP$VERBOSE --delete admin@smtucker.dev:~/notes/$FILE ~/notes$FILE
     ;;
   "dry")
     echo -e "\n${CYAN}Dry run sending notes$FILE ...${NC}\n"
