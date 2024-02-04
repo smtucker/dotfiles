@@ -23,10 +23,10 @@ VERBOSE=""
 
 case $1 in
   "up")
-    rsync -azuP$VERBOSE --delete ~/notes/$FILE admin@smtucker.dev:~/notes$FILE
+    rsync -azuP$VERBOSE --mkpath --delete ~/notes/$FILE admin@smtucker.dev:~/notes$FILE
     ;;
   "down")
-    rsync -azuP$VERBOSE --delete admin@smtucker.dev:~/notes/$FILE ~/notes$FILE
+    rsync -azuP$VERBOSE --mkpath --delete admin@smtucker.dev:~/notes/$FILE ~/notes$FILE
     ;;
   "dry")
     echo -e "\n${CYAN}Dry run sending notes$FILE ...${NC}\n"
