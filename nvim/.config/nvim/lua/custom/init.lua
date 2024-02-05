@@ -18,3 +18,8 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.norg"},
   command = "setlocal conceallevel=3"
 })
+
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  pattern = {"*.md"},
+  command = "setlocal conceallevel=2"
+})
