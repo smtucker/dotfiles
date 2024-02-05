@@ -24,16 +24,16 @@ local plugins = {
 	{
 		"NvChad/nvterm",
 		opts = {
-      terminals = {
-        type_opts = {
-          float = {
-            row = .2,
-            col = .15,
-            width = 0.7,
-            height = 0.6,
-          },
-        },
-      },
+			terminals = {
+				type_opts = {
+					float = {
+						row = 0.2,
+						col = 0.15,
+						width = 0.7,
+						height = 0.6,
+					},
+				},
+			},
 		},
 	},
 
@@ -54,10 +54,10 @@ local plugins = {
 	{
 		"hrsh7th/nvim-cmp",
 		opts = require("custom.configs.nvimcmp"),
-    event = {
-      "InsertEnter",
-      "CmdlineEnter",
-    },
+		event = {
+			"InsertEnter",
+			"CmdlineEnter",
+		},
 		dependencies = {
 			"hrsh7th/cmp-cmdline",
 		},
@@ -71,26 +71,26 @@ local plugins = {
 	},
 
 	-- General
-  {
-    dir = "~/code/autodircmds/",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    opts = {
-      log_level = "debug",
-      dirs = {
-        {
-          "~/notes",
-          preopen = "!sync-notes down %",
-          postwrite = "!sync-notes up %",
-        },
-      },
-    },
-    lazy = false,
-    -- config = function()
-    --   require("autodircmds").setup()
-    -- end,
-  },
+	{
+		dir = "~/code/autodircmds/",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			log_level = "debug",
+			dirs = {
+				{
+					"~/notes",
+					preopen = "!sync-notes down %",
+					postwrite = "!sync-notes up %",
+				},
+			},
+		},
+		lazy = false,
+		-- config = function()
+		--   require("autodircmds").setup()
+		-- end,
+	},
 	{
 		"matbme/JABS.nvim",
 		cmd = "JABSOpen",
@@ -143,17 +143,44 @@ local plugins = {
 		end,
 		ft = { "go", "python", "lua", "rust", "c", "cpp" },
 	},
-	{
-		"nvim-neorg/neorg",
-		dir = "~/code/neorg/",
-		build = ":Neorg sync-parsers",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		ft = "norg",
-		cmd = "Neorg",
-		config = function()
-			require("custom.configs.neorg")
-		end,
-	},
+	-- {
+	-- 	"nvim-neorg/neorg",
+	-- 	dir = "~/code/neorg/",
+	-- 	build = ":Neorg sync-parsers",
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- 	ft = "norg",
+	-- 	cmd = "Neorg",
+	-- 	config = function()
+	-- 		require("custom.configs.neorg")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"epwalsh/obsidian.nvim",
+	-- 	version = "*", -- recommended, use latest release instead of latest commit
+ --    lazy = false, -- So I get the completion
+	-- 	dependencies = {
+	-- 		-- Required.
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	opts = {
+	-- 		workspaces = {
+	-- 			{
+	-- 				name = "general",
+	-- 				path = "~/notes",
+	-- 			},
+	-- 		},
+ --      daily_notes = {
+ --        folder = "journal",
+ --        -- template = "daily.md",
+ --      },
+ --      completion = {
+ --        nvim_cmp = true,
+ --      },
+ --      templates = {
+ --        subdir = "templates",
+ --      },
+	-- 	},
+	-- },
 	-- Debugging
 	{
 		"mfussenegger/nvim-dap",
