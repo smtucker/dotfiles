@@ -143,44 +143,44 @@ local plugins = {
 		end,
 		ft = { "go", "python", "lua", "rust", "c", "cpp" },
 	},
-	-- {
-	-- 	"nvim-neorg/neorg",
-	-- 	dir = "~/code/neorg/",
-	-- 	build = ":Neorg sync-parsers",
-	-- 	dependencies = { "nvim-lua/plenary.nvim" },
-	-- 	ft = "norg",
-	-- 	cmd = "Neorg",
-	-- 	config = function()
-	-- 		require("custom.configs.neorg")
-	-- 	end,
-	-- },
-	-- {
-	-- 	"epwalsh/obsidian.nvim",
-	-- 	version = "*", -- recommended, use latest release instead of latest commit
- --    lazy = false, -- So I get the completion
-	-- 	dependencies = {
-	-- 		-- Required.
-	-- 		"nvim-lua/plenary.nvim",
-	-- 	},
-	-- 	opts = {
-	-- 		workspaces = {
-	-- 			{
-	-- 				name = "general",
-	-- 				path = "~/notes",
-	-- 			},
-	-- 		},
- --      daily_notes = {
- --        folder = "journal",
- --        -- template = "daily.md",
- --      },
- --      completion = {
- --        nvim_cmp = true,
- --      },
- --      templates = {
- --        subdir = "templates",
- --      },
-	-- 	},
-	-- },
+	{
+		"nvim-neorg/neorg",
+		dir = "~/code/neorg/",
+		build = ":Neorg sync-parsers",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		ft = "norg",
+		cmd = "Neorg",
+		config = function()
+			require("custom.configs.neorg")
+		end,
+	},
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*", -- recommended, use latest release instead of latest commit
+    lazy = false, -- So I get the completion
+		dependencies = {
+			-- Required.
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			workspaces = {
+				{
+					name = "general",
+					path = "~/notes",
+				},
+			},
+      daily_notes = {
+        folder = "journal",
+        -- template = "daily.md",
+      },
+      completion = {
+        nvim_cmp = true,
+      },
+      templates = {
+        subdir = "templates",
+      },
+		},
+	},
 	-- Debugging
 	{
 		"mfussenegger/nvim-dap",
