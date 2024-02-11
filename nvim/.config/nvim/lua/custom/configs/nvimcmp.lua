@@ -5,10 +5,11 @@ dofile(vim.g.base46_cache .. "cmp")
 local M = {
   preselect = cmp.PreselectMode.None,
   completion = {
-    completeopt = "menu,menuone,noselect,noinsert,preview",
+    completeopt = "menu,menuone,noselect,noinsert,preview,popup",
   },
   sources = {
-    { name = "copilot" },
+    -- { name = "copilot" },
+    { name = "codeium" },
     { name = "neorg" },
     { name = "nvim_lsp" },
     { name = "luasnip" },

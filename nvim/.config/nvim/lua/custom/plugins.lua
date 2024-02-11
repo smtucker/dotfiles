@@ -157,7 +157,7 @@ local plugins = {
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
-    lazy = false, -- So I get the completion
+		lazy = false, -- So I get the completion
 		dependencies = {
 			-- Required.
 			"nvim-lua/plenary.nvim",
@@ -169,16 +169,16 @@ local plugins = {
 					path = "~/notes",
 				},
 			},
-      daily_notes = {
-        folder = "journal",
-        -- template = "daily.md",
-      },
-      completion = {
-        nvim_cmp = true,
-      },
-      templates = {
-        subdir = "templates",
-      },
+			daily_notes = {
+				folder = "journal",
+				-- template = "daily.md",
+			},
+			completion = {
+				nvim_cmp = true,
+			},
+			templates = {
+				subdir = "templates",
+			},
 		},
 	},
 	-- Debugging
@@ -267,20 +267,31 @@ local plugins = {
 
 	-- Copilot stuff
 	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
+		"Exafunction/codeium.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+    event = "BufEnter",
 		config = function()
-			require("custom.configs.copilot")
+			require("codeium").setup({})
 		end,
 	},
-	{
-		"zbirenbaum/copilot-cmp",
-		lazy = false,
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		require("custom.configs.copilot")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		require("copilot_cmp").setup()
+	-- 	end,
+	-- },
 
 	-- To make a plugin not be loaded
 	-- {
