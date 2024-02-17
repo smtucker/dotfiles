@@ -79,10 +79,9 @@ local plugins = {
 		opts = {
 			log_level = "debug",
 			dirs = {
-				{
-					"~/notes",
-					preopen = "!sync-notes down %",
-					postwrite = "!sync-notes up %",
+				["~/notes"] = {
+					["BufReadPre"] = "!sync-notes down %",
+					["BufWritePost"] = "!sync-notes up %",
 				},
 			},
 		},
