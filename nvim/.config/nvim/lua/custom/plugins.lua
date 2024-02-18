@@ -69,6 +69,20 @@ local plugins = {
 		"nvim-telescope/telescope.nvim",
 		opts = require("custom.configs.telescope"),
 	},
+  {
+    "windwp/nvim-autopairs",
+    opts = {
+      fast_wrap = {},
+      disable_filetype = { "TelescopePrompt", "vim", "norg" },
+    },
+    config = function(_, opts)
+      require("nvim-autopairs").setup(opts)
+
+      -- setup cmp for autopairs
+      local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
+  },
 
 	-- General
 	{
@@ -146,7 +160,10 @@ local plugins = {
 		"nvim-neorg/neorg",
 		dir = "~/code/neorg/",
 		build = ":Neorg sync-parsers",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
 		ft = "norg",
 		cmd = "Neorg",
 		config = function()
