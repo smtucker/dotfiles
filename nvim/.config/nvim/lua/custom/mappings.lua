@@ -32,6 +32,18 @@ M.neorg = {
   }
 }
 
+M.obsidian = {
+  n = {
+    ["<leader>fo"] = {"<cmd> ObsidianSearch <CR>", "ObsidianSearch"},
+    ["<leader>ob"] = {"<cmd> ObsidianBacklinks <CR>", "ObsidianBacklinks"},
+    ["<leader>oo"] = {":ObsidianOpen ", "ObsidianOpen", silent = false},
+    ["<leader>ol"] = {"<cmd> ObsidianLink <CR>", "ObsidianLink"},
+    ["<leader>on"] = {":ObsidianNew ", "ObsidianNew", silent = false},
+    ["<leader>ot"] = {"<cmd> ObsidianTags <cr>", "ObsidianTags"},
+    ["<leader>ox"] = {":ObsidianExtractNote ", "ObsidianExtractNote", silent = false},
+  }
+}
+
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
@@ -57,7 +69,7 @@ M.general = {
       end,
       "LSP formatting",
     },
-    ["<leader>ot"] = { function() require("base46").toggle_transparency() end, "Toggle Transparency" },
+    ["<leader>vt"] = { function() require("base46").toggle_transparency() end, "Toggle Transparency" },
   },
   v = {
     [">"] = { ">gv", "indent"},
