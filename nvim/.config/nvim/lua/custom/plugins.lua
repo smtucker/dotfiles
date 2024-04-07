@@ -79,8 +79,8 @@ local plugins = {
       require("nvim-autopairs").setup(opts)
 
       -- setup cmp for autopairs
-      local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      -- local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+      -- require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
 
@@ -156,11 +156,17 @@ local plugins = {
 		end,
 		ft = { "go", "python", "lua", "rust", "c", "cpp" },
 	},
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+  },
 	{
 		"nvim-neorg/neorg",
 		dir = "~/code/neorg/",
 		build = ":Neorg sync-parsers",
 		dependencies = {
+      "vhyrro/luarocks.nvim",
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
     },
@@ -178,24 +184,7 @@ local plugins = {
 			-- Required.
 			"nvim-lua/plenary.nvim",
 		},
-		opts = {
-			workspaces = {
-				{
-					name = "general",
-					path = "~/notes",
-				},
-			},
-			daily_notes = {
-				folder = "journal",
-				-- template = "daily.md",
-			},
-			completion = {
-				nvim_cmp = true,
-			},
-			templates = {
-				subdir = "templates",
-			},
-		},
+		opts = require("custom.configs.obsidian"),
 	},
 	-- Debugging
 	{
