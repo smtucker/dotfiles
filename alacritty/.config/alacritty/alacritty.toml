@@ -1,0 +1,45 @@
+[colors.bright]
+black = "#6c6823"
+blue = "#477ca1"
+cyan = "#75a738"
+green = "#18974e"
+magenta = "#8868b3"
+red = "#c35359"
+white = "#faf0a5"
+yellow = "#a88339"
+
+[colors.cursor]
+cursor = "#948e48"
+text = "#201602"
+
+[colors.normal]
+black = "#201602"
+blue = "#477ca1"
+cyan = "#75a738"
+green = "#18974e"
+magenta = "#8868b3"
+red = "#c35359"
+white = "#948e48"
+yellow = "#a88339"
+
+[colors.primary]
+background = "#201602"
+foreground = "#948e48"
+
+[env]
+LANG = "en_US.UTF-8"
+LC_CTYPE = "en_US.UTF-8"
+TERM = "alacritty"
+
+[font]
+size = 16.0
+
+[font.normal]
+family = "TerminessNerdFontMono"
+
+[window]
+opacity = 0.9
+
+[window.dimensions]
+columns = 120
+lines = 28
