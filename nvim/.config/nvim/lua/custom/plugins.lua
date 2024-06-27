@@ -86,7 +86,7 @@ local plugins = {
 
 	-- General
 	{
-		dir = "~/code/autodircmds/",
+		"smtucker/autodircmds",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
