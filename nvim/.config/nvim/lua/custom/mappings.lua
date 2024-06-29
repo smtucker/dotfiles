@@ -76,6 +76,18 @@ M.general = {
   },
 }
 
+local ipopts = { noremap = true, silent = true }
+
+M.iconpicker = {
+  n = {
+    ["<leader>ii"] = {"<cmd> IconPickerNormal <CR>", "IconPickerNormal", opts = ipopts},
+    ["<leader>iy"] = {"<cmd> IconPickerYank <CR>", "IconPickerYank", opts = ipopts},
+  },
+  i = {
+    ["<C-i>"] = {"<cmd> IconPickerNormal <CR>", "IconPickerNormal", opts = ipopts},
+  }
+}
+
 M.telescope = {
   n ={
     ["<C-t>"] = {"<cmd> Telescope cder <CR>", "Telescope Change Directory"},
