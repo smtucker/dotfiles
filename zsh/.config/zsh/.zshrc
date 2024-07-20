@@ -87,6 +87,12 @@ source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 bindkey '^ ' autosuggest-accept
 
 eval "$(zoxide init zsh)"
+
+# If the wal sequences file exists, source it
+if [ -f $HOME/.cache/wal/sequences ]; then
+  cat $HOME/.cache/wal/sequences
+fi
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
