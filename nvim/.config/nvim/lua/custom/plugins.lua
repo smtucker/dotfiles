@@ -164,17 +164,9 @@ local plugins = {
 		end,
 		ft = { "go", "python", "lua", "rust", "c", "cpp" },
 	},
-  {
-    "vhyrro/luarocks.nvim",
-    priority = 1000,
-    config = true,
-  },
 	{
 		"nvim-neorg/neorg",
-		dir = "~/code/neorg/",
-		build = ":Neorg sync-parsers",
 		dependencies = {
-      "vhyrro/luarocks.nvim",
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
     },
@@ -287,7 +279,9 @@ local plugins = {
 		},
     event = "BufEnter",
 		config = function()
-			require("codeium").setup({})
+			require("codeium").setup({
+        enable_chat = true,
+      })
 		end,
 	},
 	-- {
