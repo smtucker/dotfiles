@@ -35,6 +35,7 @@ M.neorg = {
 M.obsidian = {
   n = {
     ["<leader>fo"] = {"<cmd> ObsidianSearch <CR>", "ObsidianSearch"},
+    ["<leader>oc"] = {"<cmd> ObsidianToggleCheckbox <CR>", "ObsidianToggleCheckbox"},
     ["<leader>ob"] = {"<cmd> ObsidianBacklinks <CR>", "ObsidianBacklinks"},
     ["<leader>oo"] = {":ObsidianOpen ", "ObsidianOpen", silent = false},
     ["<leader>ol"] = {"<cmd> ObsidianLink <CR>", "ObsidianLink"},
