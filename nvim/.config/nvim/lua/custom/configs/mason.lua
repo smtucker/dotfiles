@@ -15,6 +15,7 @@ local M = {
     -- c/cpp stuff
     "clangd",
     "clang-format",
+    "omnisharp",
 
     "gopls",
     "goimports", -- Automatically modify import table

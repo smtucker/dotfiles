@@ -23,3 +23,8 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.md"},
   command = "setlocal conceallevel=2"
 })
+
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  pattern = {"*.cs"},
+  command = "setlocal tabstop=4 shiftwidth=4 noexpandtab"
+})
