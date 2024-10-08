@@ -183,3 +183,6 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# bun completions
+[ -s "/home/shelby/.bun/_bun" ] && source "/home/shelby/.bun/_bun"
