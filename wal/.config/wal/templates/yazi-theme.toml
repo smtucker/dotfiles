@@ -1,0 +1,145 @@
+# vim:fileencoding=utf-8:foldmethod=marker
+
+# : Manager {{{{{{
+
+[manager]
+cwd = {{ fg = "{color1}" }}
+
+# Hovered
+hovered         = {{ fg = "{background}", bg = "{color1}" }}
+preview_hovered = {{ underline = true }}
+
+# Find
+find_keyword  = {{ fg = "#b8bb26", italic = true }}
+find_position = {{ fg = "{color6}", bg = "reset", italic = true }}
+
+# Marker
+marker_selected = {{ fg = "#b8bb26", bg = "#b8bb26" }}
+marker_copied   = {{ fg = "#b8bb26", bg = "#b8bb26" }}
+marker_cut      = {{ fg = "#fb4934", bg = "#fb4934" }}
+
+# Tab
+tab_active   = {{ fg = "{background}", bg = "{foreground}" }}
+tab_inactive = {{ fg = "{color15}", bg = "{color4}" }}
+tab_width    = 1
+
+# Border
+border_symbol = "│"
+border_style  = {{ fg = "{color7}" }}
+
+# Highlighting
+# syntect_theme = "~/.config/yazi/Gruvbox-Dark.tmTheme"
+
+# : }}}}}}
+
+
+# : Status {{{{{{
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = {{ fg = "{color4}", bg = "{color4}" }}
+
+# Mode
+mode_normal = {{ fg = "{background}", bg = "{color15}", bold = true }}
+mode_select = {{ fg = "{background}", bg = "#b8bb26", bold = true }}
+mode_unset  = {{ fg = "{background}", bg = "#d3869b", bold = true }}
+
+# Progress
+progress_label  = {{ fg = "{color3}", bold = true }}
+progress_normal = {{ fg = "{foreground}", bg = "{color4}" }}
+progress_error  = {{ fg = "#fb4934", bg = "{color4}" }}
+
+# Permissions
+permissions_t = {{ fg = "{foreground}" }}
+permissions_r = {{ fg = "#b8bb26" }}
+permissions_w = {{ fg = "#fb4934" }}
+permissions_x = {{ fg = "#b8bb26" }}
+permissions_s = {{ fg = "#665c54" }}
+
+# : }}}}}}
+
+
+# : Input {{{{{{
+
+[input]
+border   = {{ fg = "{color5}" }}
+title    = {{}}
+value    = {{}}
+selected = {{ reversed = true }}
+
+# : }}}}}}
+
+
+# : Select {{{{{{
+
+[select]
+border   = {{ fg = "{foreground}" }}
+active   = {{ fg = "{color6}" }}
+inactive = {{}}
+
+# : }}}}}}
+
+
+# : Tasks {{{{{{
+
+[tasks]
+border  = {{ fg = "{foreground}" }}
+title   = {{}}
+hovered = {{ underline = true }}
+
+# : }}}}}}
+
+
+# : Which {{{{{{
+
+[which]
+mask            = {{ bg = "{color4}" }}
+cand            = {{ fg = "{color1}" }}
+rest            = {{ fg = "{color5}" }}
+desc            = {{ fg = "{color6}" }}
+separator       = "  "
+separator_style = {{ fg = "{foreground}" }}
+
+# : }}}}}}
+
+
+# : Help {{{{{{
+
+[help]
+on      = {{ fg = "{color6}" }}
+exec    = {{ fg = "{color1}" }}
+desc    = {{ fg = "{color5}" }}
+hovered = {{ bg = "{foreground}", bold = true }}
+footer  = {{ fg = "{color4}", bg = "{color15}" }}
+
+# : }}}}}}
+
+
+# : File-specific styles {{{{{{
+
+[filetype]
+
+rules = [
+    # Images
+    {{ mime = "image/*", fg = "{color1}" }},
+
+    # Videos
+    {{ mime = "video/*", fg = "#b8bb26" }},
+    {{ mime = "audio/*", fg = "#b8bb26" }},
+
+    # Archives
+    {{ mime = "application/zip",             fg = "{color6}" }},
+    {{ mime = "application/gzip",            fg = "{color6}" }},
+    {{ mime = "application/x-tar",           fg = "{color6}" }},
+    {{ mime = "application/x-bzip",          fg = "{color6}" }},
+    {{ mime = "application/x-bzip2",         fg = "{color6}" }},
+    {{ mime = "application/x-7z-compressed", fg = "{color6}" }},
+    {{ mime = "application/x-rar",           fg = "{color6}" }},
+
+    # Fallback
+    {{ name = "*", fg = "{color15}" }},
+    {{ name = "*/", fg = "{color1}" }}
+]
+
+# : }}}}}}
