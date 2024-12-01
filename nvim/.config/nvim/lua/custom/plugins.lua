@@ -186,7 +186,18 @@ local plugins = {
 		},
 		opts = require("custom.configs.obsidian"),
 	},
-	-- Debugging
+  {
+    'nvimdev/lspsaga.nvim',
+    config = function()
+        require('lspsaga').setup({})
+    end,
+    ft = { 'lua', 'python', 'go', 'rust', 'c', 'cpp', 'cs' },
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter', -- optional
+        'nvim-tree/nvim-web-devicons',     -- optional
+    }
+  },
+  -- Debugging
 	{
 		"mfussenegger/nvim-dap",
 		config = function()
@@ -221,7 +232,7 @@ local plugins = {
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		cmd = "TroubleToggle",
+		cmd = "Trouble",
 		opts = {
 			mode = "document_diagnostics",
 		},
