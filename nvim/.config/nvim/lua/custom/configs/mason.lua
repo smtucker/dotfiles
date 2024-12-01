@@ -25,7 +25,8 @@ local M = {
     "impl",
     "gospel",
 
-    "pyright",
+    "basedpyright",
+    -- "pyright",
     "pylint",
 
     "beautysh", -- Shell formatter

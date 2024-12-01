@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "ts_ls", "clangd", "gopls", "pyright" }
+local servers = { "html", "cssls", "ts_ls", "clangd", "gopls", "basedpyright" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -14,7 +14,17 @@ for _, lsp in ipairs(servers) do
 end
 
 -- 
--- lspconfig.pyright.setup { blabla}
+-- lspconfig.pyright.setup {
+--   settings = {
+--     python = {
+--       analysis = {
+--         autoSearchPaths = true,
+--         diagnosticMode = "workspace",
+--         useLibraryCodeForTypes = true
+--       },
+--     },
+--   },
+-- }
 
 lspconfig["lua_ls"].setup {
   on_attach = on_attach,
