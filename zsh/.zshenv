@@ -12,3 +12,4 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 . "$HOME/.cargo/env"
+export OOMOX_QTSTYLEPLUGIN_THEME=oomox
