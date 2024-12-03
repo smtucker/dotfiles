@@ -59,6 +59,16 @@ lspconfig["lua_ls"].setup {
   end
 }
 
+local cmp_nvim_lsp = require "cmp_nvim_lsp"
+lspconfig["clangd"].setup {
+  on_attach = on_attach,
+  capabilities = cmp_nvim_lsp.default_capabilities(),
+  cmd = {
+    "clangd",
+    "--offset-encoding=utf-16",
+  },
+}
+
 lspconfig.omnisharp.setup {
   capabilities = capabilities,
   cmd = { "dotnet", vim.fn.stdpath "data" .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
