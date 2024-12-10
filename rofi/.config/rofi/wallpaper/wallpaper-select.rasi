@@ -1,0 +1,79 @@
+/* config - Wallpaper select */
+
+configuration {
+    modi:                        "drun";
+    show-icons:                  true;
+  	drun-display-format:         "{name}";
+    hover-select:                true;
+}
+/* Config and colors ----------------------------------------------- */
+
+@import                          "../shared/colors.rasi"
+@import                          "../shared/fonts.rasi"
+
+/* Main Window ------------------------------------------------ */
+window {
+    transparent:                 "real";
+    width:                       95%;
+    height:                      95%;
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      3px solid;
+    border-color:                @active-background;
+    border-radius:               12px;
+    cursor:                      "default";
+}
+
+/* Main Box --------------------------------------------------- */
+mainbox {
+    children:                    [ "listview" ];
+    background-color:            transparent;
+
+    spacing:                     20px;
+    margin:                      0px;
+    padding:                     24px;
+}
+
+/* ---- List ---- */
+listview {
+    columns:                     4;
+    lines:                       3;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+
+    background-color:           transparent;
+    text-color:                 @foreground;
+
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     0px;
+}
+
+/* Elements --------------------------------------------------- */
+element {
+    cursor:                      pointer;
+    border-radius:               36px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    orientation:                 vertical;
+
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     0px;
+}
+
+element-icon {
+    expand:                      false;
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        26%;
+    cursor:                      inherit;
+}

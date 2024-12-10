@@ -10,15 +10,26 @@ TEMPLATE="$OOMOXPLUGINDIR/import_xresources/colors/xresources-reverse"
 # TEMPLATE=/opt/oomox/plugins/base16/schemes/pywal/pywal.yml
 QT_STYLE_THEMES="$HOME/.config/oomox-qtstyleplugin/themes"
 OOMOXCOLOR=/opt/oomox/scripted_colors/xresources/xresources-reverse
-dir="$HOME/.config/rofi"
-theme='style-1'
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+function CRIT_ERROR() {
+  echo "ERROR: $1"
+  if [ -n "$NID" ]; then
+    notify-send -a "Wallpaper Switcher" "ERROR: $1" --urgency=critical
+  else
+    notify-send -a "Wallpaper Switcher" -r "$NID" "ERROR: $1" --urgency=critical
+  fi
+  return 1
+}
 
 ## Select wallpaper with rofi
-cd ~/Pictures/wallpapers || return 1
+cd ~/Pictures/wallpapers || CRIT_ERROR "Cannot find wallpaper directory"
 P=$(for a in *; do echo -en "$a\0icon\x1f$a\n"; done |
 rofi \
     -dmenu \
-    -theme "${dir}"/"${theme}".rasi)
+    -theme "${SCRIPT_DIR}"/wallpaper-select.rasi \
+    -show-icons)
 
 ## Quit if P is empty
 if [ -z "$P" ]; then 
@@ -27,7 +38,7 @@ fi
 
 NID=$(notify-send -p "Changing wallpaper" "Generating colors..." -h int:value:5 -a "Wallpaper Switcher")
 
-PRINT_USAGE() {
+function PRINT_USAGE() {
   echo "Usage: $0 [options]"
   echo "Options:"
   echo "  -r  Skip reloading applications"
@@ -36,7 +47,7 @@ PRINT_USAGE() {
   echo "  -i  Skip generating icon theme"
 }
 
-GENERATE_COLORS() {
+function GENERATE_COLORS() {
   wal --cols16 lighten -i ~/Pictures/wallpapers/"$P"
 
   cp ~/.cache/wal/colors-waybar.css ~/.config/waybar/colors.css
@@ -45,7 +56,7 @@ GENERATE_COLORS() {
   cp ~/.cache/wal/colors.Xresources ~/.Xresources
 }
 
-RELOAD_APPS(){
+function RELOAD_APPS(){
   notify-send -r "$NID" "Changing Wallpaper" "Reloading apps..." -h int:value:10 -a "Wallpaper Switcher"
 
   swaync-client -rs
@@ -57,7 +68,7 @@ RELOAD_APPS(){
   hyprctl dispatch exec "swaybg -i ~/Pictures/wallpapers/$P"
 }
 
-GENERATE_GTK_THEMES(){
+function GENERATE_GTK_THEMES(){
   notify-send -r "$NID" "Changing Wallpaper" "Generating Gtk2/3 themes..." -h int:value:15 -a "Wallpaper Switcher"
   xrdb -merge ~/.Xresources
   oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse
@@ -67,7 +78,7 @@ GENERATE_GTK_THEMES(){
   cp "$HOME/.themes/$THEMENAME/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
 }
 
-GENERATE_QT_STYLE() {
+function GENERATE_QT_STYLE() {
   notify-send -r "$NID" "Changing Wallpaper" "Generating Qt themes..." -h int:value:55 -a "Wallpaper Switcher"
   if [ -d "${QT_STYLE_THEMES}" ]; then
     cp ~/.cache/wal/oomox-base16.yml "$TEMPLATE"
@@ -78,7 +89,7 @@ GENERATE_QT_STYLE() {
   fi
 }
 
-GENERATE_ICONS() {
+function GENERATE_ICONS() {
   notify-send -r "$NID" "Changing Wallpaper" "Generating icon theme..." -h int:value:75 -a "Wallpaper Switcher"
   /opt/oomox/plugins/icons_gnomecolors/gnome-colors-icon-theme/change_color.sh -o "${THEMENAME}" "${OOMOXCOLOR}"
 }
