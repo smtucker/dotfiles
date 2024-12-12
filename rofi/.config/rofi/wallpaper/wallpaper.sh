@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 
-## Configuration
-THEMENAME="oomox-xresources-reverse"
-BASE16CLI="/opt/oomox/plugins/base16/cli.py"
-OOMOXPLUGINDIR="/opt/oomox/plugins/"
-QT_STYLE_TEMPLATE="$OOMOXPLUGINDIR/base16/templates/qt-oomox-styleplugin/templates/default.mustache"
-GTK4_TEMPLATE="$OOMOXPLUGINDIR/base16/templates/gtk4-oodwaita/templates/gtk4-libadwaita1.6.0.mustache"
-TEMPLATE="$OOMOXPLUGINDIR/import_xresources/colors/xresources-reverse"
-# TEMPLATE=/opt/oomox/plugins/base16/schemes/pywal/pywal.yml
-QT_STYLE_THEMES="$HOME/.config/oomox-qtstyleplugin/themes"
-OOMOXCOLOR=/opt/oomox/scripted_colors/xresources/xresources-reverse
-
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 function CRIT_ERROR() {
@@ -23,19 +12,45 @@ function CRIT_ERROR() {
   return 1
 }
 
+## Pick light or dark mode
+MODE=$(printf "Light\nDark\n" |
+  rofi -dmenu \
+    -theme "${SCRIPT_DIR}"/mode-select.rasi )
+
+case $MODE in
+  Light)
+    LIGHTMODE=lighten
+    REVERSE=""
+    ;;
+  Dark)
+    LIGHTMODE=darken
+    REVERSE="-reverse"
+    ;;
+  *) CRIT_ERROR "Invalid mode" ; exit ;;
+esac
+
 ## Select wallpaper with rofi
 cd ~/Pictures/wallpapers || CRIT_ERROR "Cannot find wallpaper directory"
 P=$(for a in *; do echo -en "$a\0icon\x1f$a\n"; done |
 rofi \
     -dmenu \
-    -theme "${SCRIPT_DIR}"/wallpaper-select.rasi \
-    -show-icons)
+    -theme "${SCRIPT_DIR}"/wallpaper-select.rasi)
 
 ## Quit if P is empty
 if [ -z "$P" ]; then 
   exit
 fi
 
+## Configuration
+THEMENAME="oomox-xresources-reverse"
+BASE16CLI="/opt/oomox/plugins/base16/cli.py"
+OOMOXPLUGINDIR="/opt/oomox/plugins/"
+QT_STYLE_TEMPLATE="$OOMOXPLUGINDIR/base16/templates/qt-oomox-styleplugin/templates/default.mustache"
+GTK4_TEMPLATE="$OOMOXPLUGINDIR/base16/templates/gtk4-oodwaita/templates/gtk4-libadwaita1.6.0.mustache"
+TEMPLATE="$OOMOXPLUGINDIR/import_xresources/colors/xresources$REVERSE"
+# TEMPLATE=/opt/oomox/plugins/base16/schemes/pywal/pywal.yml
+QT_STYLE_THEMES="$HOME/.config/oomox-qtstyleplugin/themes"
+OOMOXCOLOR="/opt/oomox/scripted_colors/xresources/xresources$REVERSE"
 NID=$(notify-send -p "Changing wallpaper" "Generating colors..." -h int:value:5 -a "Wallpaper Switcher")
 
 function PRINT_USAGE() {
@@ -71,7 +86,7 @@ function RELOAD_APPS(){
 function GENERATE_GTK_THEMES(){
   notify-send -r "$NID" "Changing Wallpaper" "Generating Gtk2/3 themes..." -h int:value:15 -a "Wallpaper Switcher"
   xrdb -merge ~/.Xresources
-  oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse
+  oomox-cli /opt/oomox/scripted_colors/xresources/xresources${REVERSE} -o oomox-xresources-reverse
   notify-send -r "$NID" "Changing Wallpaper" "Generating Gtk4 theme..." -h int:value:35 -a "Wallpaper Switcher"
   python "${BASE16CLI}" "${GTK4_TEMPLATE}" "${TEMPLATE}" > "$HOME/.themes/$THEMENAME/gtk-4.0/gtk.css"
   sed -i '/^Import Colors/d' "$HOME/.themes/$THEMENAME/gtk-4.0/gtk.css"
