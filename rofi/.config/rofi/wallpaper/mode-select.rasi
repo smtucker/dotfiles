@@ -2,7 +2,7 @@
 
 configuration {
     modi:                        "drun";
-    show-icons:                  true;
+    show-icons:                  false;
   	drun-display-format:         "{name}";
     hover-select:                true;
 }
@@ -14,8 +14,8 @@ configuration {
 /* Main Window ------------------------------------------------ */
 window {
     transparent:                 "real";
-    width:                       95%;
-    height:                      95%;
+    width:                       300px;
+    height:                      150px;
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
@@ -29,55 +29,60 @@ window {
 
 /* Main Box --------------------------------------------------- */
 mainbox {
-    children:                    [ "listview" ];
+    children:                    [ "textbox", "listview" ];
     background-color:            transparent;
 
-    spacing:                     20px;
+    spacing:                     10px;
     margin:                      0px;
-    padding:                     24px;
+    padding:                     10px;
+}
+
+textbox {
+  expand:                      true;
+  horizontal-align:            0.5;
+  content:                       "Dark mode or Light mode";
 }
 
 /* ---- List ---- */
 listview {
-    columns:                     4;
-    lines:                       3;
-    cycle:                       true;
+    columns:                     1;
+    lines:                       2;
+    cycle:                       false;
     dynamic:                     true;
     scrollbar:                   false;
-    layout:                      vertical;
+    layout:                      horizontal;
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
 
+    horizontal-align:            0.5;
+
     background-color:           transparent;
     text-color:                 @foreground;
 
-    spacing:                     0px;
+    spacing:                     5px;
     margin:                      0px;
-    padding:                     0px;
+    padding:                     5px;
 }
 
 /* Elements --------------------------------------------------- */
 element {
     cursor:                      pointer;
-    border-radius:               36px;
+    border-radius:               6px;
     background-color:            transparent;
     text-color:                  @foreground;
-    orientation:                 vertical;
+    orientation:                 horizontal;
+    expand:                      true;
+    width:                       120px;
 
-    spacing:                     0px;
+    horizontal-align:            0.5;
+
+    spacing:                     5px;
     margin:                      0px;
-    padding:                     0px;
-}
-
-element-icon {
-    expand:                      false;
-    background-color:            transparent;
-    text-color:                  inherit;
-    size:                        26%;
-    cursor:                      inherit;
+    padding:                     10px;
 }
 
 element-text {
-  horizontal-align:            0.5;
+    horizontal-align:            0.5;
+    expand:                      true;
 }
