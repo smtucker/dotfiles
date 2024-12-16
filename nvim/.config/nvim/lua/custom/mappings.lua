@@ -200,7 +200,7 @@ M.gitsigns = {
   },
 }
 
-M.lspconfig = {
+M.lsp = {
   n = {
     ["<leader>lD"] = {
       function()

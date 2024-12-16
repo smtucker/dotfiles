@@ -301,13 +301,55 @@ local plugins = {
 			"nvim-lua/plenary.nvim",
 			"hrsh7th/nvim-cmp",
 		},
-    event = "BufEnter",
+    ft = { 'go', 'python', 'lua', 'rust', 'c', 'cpp', 'cs',
+      'sh', 'zsh', 'conf'},
 		config = function()
 			require("codeium").setup({
         enable_chat = true,
       })
 		end,
 	},
+  {
+    -- "smtucker/codecompanion.nvim",
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "echasnovski/mini.diff",
+    },
+    ft = { "go", "python", "lua", "rust", "c", "cpp", "cs", "sh", "zsh" },
+    config = function()
+      require("mini.diff").setup()
+      require("codecompanion").setup({
+        strategies = {
+          chat = {
+            adapter = "gemini",
+          },
+          inline = {
+            adapter = "gemini",
+          },
+        },
+        -- display = {
+        --   diff = {
+        --     enabled = true,
+        --     -- provider = "mini_diff",
+        --   },
+        -- },
+        adapters = {
+          gemini = function()
+            return require("codecompanion.adapters").extend("gemini", {
+              schema = {
+                model = {
+                  default = "gemini-1.5-pro"
+                },
+              },
+            })
+          end,
+        },
+      })
+    end,
+  },
+  { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
 	-- {
 	-- 	"zbirenbaum/copilot.lua",
 	-- 	cmd = "Copilot",
