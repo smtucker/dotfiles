@@ -38,17 +38,20 @@ lspconfig["lua_ls"].setup {
             -- (most likely LuaJIT in the case of Neovim)
             version = 'LuaJIT'
           },
+          diagnostics = {
+            globals = { 'vim' },
+          },
           -- Make the server aware of Neovim runtime files
           workspace = {
             checkThirdParty = "Apply",
-            library = {
-              vim.env.VIMRUNTIME,
+            -- library = {
+              -- vim.env.VIMRUNTIME,
               -- vim.expand("$HOME/.config/nvim/lua/core"),
               -- "${3rd}/luv/library"
               -- "${3rd}/busted/library",
-            }
+            -- }
             -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-            -- library = vim.api.nvim_get_runtime_file("", true)
+            library = vim.api.nvim_get_runtime_file("", true)
           }
         }
       })

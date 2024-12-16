@@ -13,6 +13,9 @@ local plugins = {
 					require("custom.configs.null-ls")
 				end,
 			},
+      {
+        "folke/neodev.nvim",
+      },
 		},
 		config = function()
 			require("plugins.configs.lspconfig")
@@ -129,10 +132,12 @@ local plugins = {
 	},
 	{
 		"folke/neodev.nvim",
+    ft = "lua",
 		opts = {
 			library = {
 				plugins = { "nvim-dap-ui" },
 				types = true,
+        enabled = true,
 			},
 		},
 	}, -- Loads vim API into lua lsp
