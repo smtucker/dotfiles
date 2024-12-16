@@ -86,9 +86,9 @@
 	"nospacing": 1,
     },
     "pulseaudio": {
-        "format": "{icon}",
+        "format": "{icon}   {volume}%",
         "format-bluetooth": "󰂰",
-        "nospacing": 1,
+        "nospacing": 0,
         "tooltip-format": "Volume : {volume}%",
         "format-muted": "󰝟",
         "format-icons": {
