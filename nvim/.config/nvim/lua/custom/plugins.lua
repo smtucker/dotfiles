@@ -86,6 +86,14 @@ local plugins = {
 
 	-- General
 	{
+    "seblj/roslyn.nvim",
+    ft = "cs",
+    cmd = "Roslyn",
+    opts = {
+        -- your configuration comes here; leave empty for default settings
+    }
+  },
+  {
 		"smtucker/autodircmds",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
