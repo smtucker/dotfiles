@@ -138,7 +138,7 @@ function GENERATE_QT_STYLE() {
     NOTIFY "Generating Qt themes..." 55
     if [ -d "${CONFIG[QT_STYLE_THEMES]}" ]; then
         if [ "$DEBUG" = 1 ]; then echo -e "${GREEN}DEBUG: Using template for Qt: ${CONFIG[QT_STYLE_TEMPLATE]}${NC}" ; fi
-        python "${CONFIG[BASE16CLI]}" "${CONFIG[QT_STYLE_TEMPLATE]}" ~/.cache/wal/oomox-base16.yml > "${CONFIG[QT_STYLE_THEMES]}/oomox.css"
+        python "${CONFIG[BASE16CLI]}" "${CONFIG[QT_STYLE_TEMPLATE]}" "${CONFIG[TEMPLATE]}" > "${CONFIG[QT_STYLE_THEMES]}/oomox.css"
         sed -i '/^Import Colors/d' "${CONFIG[QT_STYLE_THEMES]}/oomox.css"
     else
         notify-send --icon=error --urgency=critical "Error outputing Qt Stylesheet" "${CONFIG[QT_STYLE_THEMES]} does not exist"
