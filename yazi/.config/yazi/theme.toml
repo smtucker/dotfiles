@@ -3,15 +3,15 @@
 # : Manager {{{
 
 [manager]
-cwd = { fg = "#BB5253" }
+cwd = { fg = "#484b7b" }
 
 # Hovered
-hovered         = { fg = "#0c0b0d", bg = "#BB5253" }
+hovered         = { fg = "#0b0908", bg = "#484b7b" }
 preview_hovered = { underline = true }
 
 # Find
 find_keyword  = { fg = "#b8bb26", italic = true }
-find_position = { fg = "#03B0C9", bg = "reset", italic = true }
+find_position = { fg = "#a46e7e", bg = "reset", italic = true }
 
 # Marker
 marker_selected = { fg = "#b8bb26", bg = "#b8bb26" }
@@ -19,13 +19,13 @@ marker_copied   = { fg = "#b8bb26", bg = "#b8bb26" }
 marker_cut      = { fg = "#fb4934", bg = "#fb4934" }
 
 # Tab
-tab_active   = { fg = "#0c0b0d", bg = "#c2c2c2" }
-tab_inactive = { fg = "#c2c2c2", bg = "#4D609C" }
+tab_active   = { fg = "#0b0908", bg = "#c2c1c1" }
+tab_inactive = { fg = "#c2c1c1", bg = "#5a658d" }
 tab_width    = 1
 
 # Border
 border_symbol = "│"
-border_style  = { fg = "#8c8c96" }
+border_style  = { fg = "#95908a" }
 
 # Highlighting
 # syntect_theme = "~/.config/yazi/Gruvbox-Dark.tmTheme"
@@ -38,20 +38,20 @@ border_style  = { fg = "#8c8c96" }
 [status]
 separator_open  = ""
 separator_close = ""
-separator_style = { fg = "#4D609C", bg = "#4D609C" }
+separator_style = { fg = "#5a658d", bg = "#5a658d" }
 
 # Mode
-mode_normal = { fg = "#0c0b0d", bg = "#c2c2c2", bold = true }
-mode_select = { fg = "#0c0b0d", bg = "#b8bb26", bold = true }
-mode_unset  = { fg = "#0c0b0d", bg = "#d3869b", bold = true }
+mode_normal = { fg = "#0b0908", bg = "#c2c1c1", bold = true }
+mode_select = { fg = "#0b0908", bg = "#b8bb26", bold = true }
+mode_unset  = { fg = "#0b0908", bg = "#d3869b", bold = true }
 
 # Progress
-progress_label  = { fg = "#256A8C", bold = true }
-progress_normal = { fg = "#c2c2c2", bg = "#4D609C" }
-progress_error  = { fg = "#fb4934", bg = "#4D609C" }
+progress_label  = { fg = "#915d72", bold = true }
+progress_normal = { fg = "#c2c1c1", bg = "#5a658d" }
+progress_error  = { fg = "#fb4934", bg = "#5a658d" }
 
 # Permissions
-permissions_t = { fg = "#c2c2c2" }
+permissions_t = { fg = "#c2c1c1" }
 permissions_r = { fg = "#b8bb26" }
 permissions_w = { fg = "#fb4934" }
 permissions_x = { fg = "#b8bb26" }
@@ -63,7 +63,7 @@ permissions_s = { fg = "#665c54" }
 # : Input {{{
 
 [input]
-border   = { fg = "#0493AA" }
+border   = { fg = "#766687" }
 title    = {}
 value    = {}
 selected = { reversed = true }
@@ -74,8 +74,8 @@ selected = { reversed = true }
 # : Select {{{
 
 [select]
-border   = { fg = "#c2c2c2" }
-active   = { fg = "#03B0C9" }
+border   = { fg = "#c2c1c1" }
+active   = { fg = "#a46e7e" }
 inactive = {}
 
 # : }}}
@@ -84,7 +84,7 @@ inactive = {}
 # : Tasks {{{
 
 [tasks]
-border  = { fg = "#c2c2c2" }
+border  = { fg = "#c2c1c1" }
 title   = {}
 hovered = { underline = true }
 
@@ -94,12 +94,12 @@ hovered = { underline = true }
 # : Which {{{
 
 [which]
-mask            = { bg = "#4D609C" }
-cand            = { fg = "#BB5253" }
-rest            = { fg = "#0493AA" }
-desc            = { fg = "#03B0C9" }
+mask            = { bg = "#5a658d" }
+cand            = { fg = "#484b7b" }
+rest            = { fg = "#766687" }
+desc            = { fg = "#a46e7e" }
 separator       = "  "
-separator_style = { fg = "#c2c2c2" }
+separator_style = { fg = "#c2c1c1" }
 
 # : }}}
 
@@ -107,11 +107,11 @@ separator_style = { fg = "#c2c2c2" }
 # : Help {{{
 
 [help]
-on      = { fg = "#03B0C9" }
-exec    = { fg = "#BB5253" }
-desc    = { fg = "#0493AA" }
-hovered = { bg = "#c2c2c2", bold = true }
-footer  = { fg = "#4D609C", bg = "#c2c2c2" }
+on      = { fg = "#a46e7e" }
+exec    = { fg = "#484b7b" }
+desc    = { fg = "#766687" }
+hovered = { bg = "#c2c1c1", bold = true }
+footer  = { fg = "#5a658d", bg = "#c2c1c1" }
 
 # : }}}
 
@@ -122,24 +122,24 @@ footer  = { fg = "#4D609C", bg = "#c2c2c2" }
 
 rules = [
     # Images
-    { mime = "image/*", fg = "#BB5253" },
+    { mime = "image/*", fg = "#484b7b" },
 
     # Videos
     { mime = "video/*", fg = "#b8bb26" },
     { mime = "audio/*", fg = "#b8bb26" },
 
     # Archives
-    { mime = "application/zip",             fg = "#03B0C9" },
-    { mime = "application/gzip",            fg = "#03B0C9" },
-    { mime = "application/x-tar",           fg = "#03B0C9" },
-    { mime = "application/x-bzip",          fg = "#03B0C9" },
-    { mime = "application/x-bzip2",         fg = "#03B0C9" },
-    { mime = "application/x-7z-compressed", fg = "#03B0C9" },
-    { mime = "application/x-rar",           fg = "#03B0C9" },
+    { mime = "application/zip",             fg = "#a46e7e" },
+    { mime = "application/gzip",            fg = "#a46e7e" },
+    { mime = "application/x-tar",           fg = "#a46e7e" },
+    { mime = "application/x-bzip",          fg = "#a46e7e" },
+    { mime = "application/x-bzip2",         fg = "#a46e7e" },
+    { mime = "application/x-7z-compressed", fg = "#a46e7e" },
+    { mime = "application/x-rar",           fg = "#a46e7e" },
 
     # Fallback
-    { name = "*", fg = "#c2c2c2" },
-    { name = "*/", fg = "#BB5253" }
+    { name = "*", fg = "#c2c1c1" },
+    { name = "*/", fg = "#484b7b" }
 ]
 
 # : }}}
