@@ -2,25 +2,29 @@
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
+# Define some color variables
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 # Configuration
-declare -A CONFIG=(
-    ["THEMENAME"]="oomox-xresources-reverse"
-    ["BASE16CLI"]="/opt/oomox/plugins/base16/cli.py"
-    ["OOMOXPLUGINDIR"]="/opt/oomox/plugins/"
-    ["QT_STYLE_TEMPLATE"]="${OOMOXPLUGINDIR}/base16/templates/qt-oomox-styleplugin/templates/default.mustache"
-    ["GTK4_TEMPLATE"]="${OOMOXPLUGINDIR}/base16/templates/gtk4-oodwaita/templates/gtk4-libadwaita1.6.0.mustache"
-    ["TEMPLATE"]="$OOMOXPLUGINDIR/import_xresources/colors/xresources" # Default template, no reverse
-    ["QT_STYLE_THEMES"]="$HOME/.config/oomox-qtstyleplugin/themes"
-    ["OOMOXCOLOR"]="/opt/oomox/scripted_colors/xresources/xresources" # Default color, no reverse
-    ["WALLPAPER_DIR"]="$HOME/Pictures/wallpapers" # Wallpaper directory
-)
+#
+declare -A CONFIG=()
+CONFIG["THEMENAME"]="oomox-xresources-reverse"
+CONFIG["BASE16CLI"]="/opt/oomox/plugins/base16/cli.py"
+CONFIG["OOMOXPLUGINDIR"]="/opt/oomox/plugins/"
+CONFIG["QT_STYLE_TEMPLATE"]="${CONFIG[OOMOXPLUGINDIR]}/base16/templates/qt-oomox-styleplugin/templates/default.mustache"
+CONFIG["GTK4_TEMPLATE"]="${CONFIG[OOMOXPLUGINDIR]}/base16/templates/gtk4-oodwaita/templates/gtk4-libadwaita1.6.0.mustache"
+CONFIG["TEMPLATE"]="${CONFIG[OOMOXPLUGINDIR]}/import_xresources/colors/xresources" # Default template, no reverse
+CONFIG["QT_STYLE_THEMES"]="$HOME/.config/oomox-qtstyleplugin/themes"
+CONFIG["OOMOXCOLOR"]="/opt/oomox/scripted_colors/xresources/xresources" # Default color, no reverse
+CONFIG["WALLPAPER_DIR"]="$HOME/Pictures/wallpapers" # Wallpaper directory
 
-
-# --- Functions ---
+## --- Functions ---
 
 function CRIT_ERROR() {
     local message="$1"
-    echo "ERROR: ${message}"
+    echo -e "${RED}ERROR: ${message}${NC}"
     NOTIFY "${message}" critical
     return 1
 }
@@ -31,6 +35,8 @@ function NOTIFY() {
     local progress="$2"
     local urgency="$3"
     local options=""
+
+    echo -e "${GREEN}INFO: ${message}${NC}"
 
     if [ -n "${progress}" ]; then
         options+="-h int:value:${progress} "
@@ -61,8 +67,8 @@ function SET_MODE() {
     esac
 
     # Update config template and color based on mode.
-    CONFIG["TEMPLATE"]="${CONFIG["OOMOXPLUGINDIR"]}/import_xresources/colors/xresources${REVERSE}"
-    CONFIG["OOMOXCOLOR"]="/opt/oomox/scripted_colors/xresources/xresources${REVERSE}"
+    CONFIG[TEMPLATE]="${CONFIG[OOMOXPLUGINDIR]}/import_xresources/colors/xresources${REVERSE}"
+    CONFIG[OOMOXCOLOR]="/opt/oomox/scripted_colors/xresources/xresources${REVERSE}"
 }
 
 
@@ -73,7 +79,7 @@ function SELECT_WALLPAPER() {
     selection=$(for a in *; do echo -en "$a\0icon\x1f$a\n"; done |
         rofi \
             -dmenu \
-            -theme "${SCRIPT_DIR}"/wallpaper-select.rasi)
+        -theme "${SCRIPT_DIR}"/wallpaper-select.rasi)
 
     # Quit if selection is empty.
     if [ -z "$selection" ]; then
@@ -84,12 +90,12 @@ function SELECT_WALLPAPER() {
 
 
 function PRINT_USAGE() {
-  echo "Usage: $0 [options]"
-  echo "Options:"
-  echo "  -r  Skip reloading applications"
-  echo "  -g  Skip generating GTK themes"
-  echo "  -q  Skip generating Qt styles"
-  echo "  -i  Skip generating icon theme"
+    echo "Usage: $0 [options]"
+    echo "Options:"
+    echo "  -r  Skip reloading applications"
+    echo "  -g  Skip generating GTK themes"
+    echo "  -q  Skip generating Qt styles"
+    echo "  -i  Skip generating icon theme"
 }
 
 
@@ -101,6 +107,7 @@ function GENERATE_COLORS() {
     cp ~/.cache/wal/colors-rofi-dark.rasi ~/.config/rofi/shared/colors.rasi
     cp ~/.cache/wal/yazi-theme.toml ~/.config/yazi/theme.toml
     cp ~/.cache/wal/colors.Xresources ~/.Xresources
+    xrdb -merge ~/.Xresources
 }
 
 
@@ -118,7 +125,6 @@ function RELOAD_APPS() {
 
 function GENERATE_GTK_THEMES() {
     NOTIFY "Generating Gtk2/3 themes..." 15
-    xrdb -merge ~/.Xresources
     oomox-cli "${CONFIG[OOMOXCOLOR]}" -o "${CONFIG[THEMENAME]}"
 
     NOTIFY "Generating Gtk4 theme..." 35
@@ -131,8 +137,8 @@ function GENERATE_GTK_THEMES() {
 function GENERATE_QT_STYLE() {
     NOTIFY "Generating Qt themes..." 55
     if [ -d "${CONFIG[QT_STYLE_THEMES]}" ]; then
-        cp ~/.cache/wal/oomox-base16.yml "${CONFIG[TEMPLATE]}"
-        python "${CONFIG[BASE16CLI]}" "${CONFIG[QT_STYLE_TEMPLATE]}" "${CONFIG[TEMPLATE]}" > "${CONFIG[QT_STYLE_THEMES]}/oomox.css"
+        if [ "$DEBUG" = 1 ]; then echo -e "${GREEN}DEBUG: Using template for Qt: ${CONFIG[QT_STYLE_TEMPLATE]}${NC}" ; fi
+        python "${CONFIG[BASE16CLI]}" "${CONFIG[QT_STYLE_TEMPLATE]}" ~/.cache/wal/oomox-base16.yml > "${CONFIG[QT_STYLE_THEMES]}/oomox.css"
         sed -i '/^Import Colors/d' "${CONFIG[QT_STYLE_THEMES]}/oomox.css"
     else
         notify-send --icon=error --urgency=critical "Error outputing Qt Stylesheet" "${CONFIG[QT_STYLE_THEMES]} does not exist"
@@ -153,25 +159,28 @@ SET_MODE "$MODE"
 
 P=$(SELECT_WALLPAPER)
 
-while getopts "rgqi" opt; do
-  case $opt in
-    r)
-      SKIP_RELOAD=1
-      ;;
-    g)
-      SKIP_GTK=1
-      ;;
-    q)
-      SKIP_QT=1
-      ;;
-    i)
-      SKIP_ICONS=1
-      ;;
-    *)
-      PRINT_USAGE
-      notify-send -r "$NID" "Error" "Invalid option: $opt" -a "Wallpaper Switcher" -w -i error
-      ;;
-  esac
+while getopts "rgqid" opt; do
+    case $opt in
+        r)
+            SKIP_RELOAD=1
+            ;;
+        g)
+            SKIP_GTK=1
+            ;;
+        q)
+            SKIP_QT=1
+            ;;
+        i)
+            SKIP_ICONS=1
+            ;;
+        d)
+            DEBUG=1
+            ;;
+        *)
+            PRINT_USAGE
+            notify-send -r "$NID" "Error" "Invalid option: $opt" -a "Wallpaper Switcher" -w -i error
+            ;;
+    esac
 done
 
 
