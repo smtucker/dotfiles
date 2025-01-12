@@ -16,7 +16,7 @@ local sources = {
   b.code_actions.impl, -- Go interface implentation stubs
 
   -- Linters
-  b.diagnostics.gospel,
+  -- b.diagnostics.gospel,
   b.diagnostics.markdownlint,
   b.diagnostics.pylint,
   b.diagnostics.revive,
