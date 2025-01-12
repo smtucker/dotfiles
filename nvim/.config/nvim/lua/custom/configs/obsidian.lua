@@ -1,4 +1,5 @@
 local M = {
+  ui = { enable = false },
   workspaces = {
     {
       name = "general",
