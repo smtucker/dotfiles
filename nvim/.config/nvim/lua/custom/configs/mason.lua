@@ -18,7 +18,10 @@ local M = {
     -- "omnisharp",
     "roslyn",
 
-    "gopls",
+    -- Protobuf
+    "protols",
+
+    -- "gopls",
     "goimports", -- Automatically modify import table
     "revive", -- Gofmt
     "delve", -- Go debugger
