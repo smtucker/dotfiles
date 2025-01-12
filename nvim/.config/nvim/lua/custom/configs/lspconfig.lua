@@ -1,19 +1,19 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
+local lspconfig = require("lspconfig")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "ts_ls", "clangd", "gopls", "basedpyright" }
+local servers = { "html", "cssls", "ts_ls", "basedpyright", "protols" }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  lspconfig[lsp].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
 end
 
--- 
+--
 -- lspconfig.pyright.setup {
 --   settings = {
 --     python = {
@@ -26,7 +26,20 @@ end
 --   },
 -- }
 
-lspconfig["lua_ls"].setup {
+lspconfig.gopls.setup({
+  cmd = { "gopls", "--remote=auto" },
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+})
+
+lspconfig["lua_ls"].setup({
   on_attach = on_attach,
   on_init = function(client)
     local path = client.workspace_folders[1].name
@@ -59,18 +72,19 @@ lspconfig["lua_ls"].setup {
       client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
     end
     return true
-  end
-}
+  end,
+})
 
-local cmp_nvim_lsp = require "cmp_nvim_lsp"
-lspconfig["clangd"].setup {
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+lspconfig["clangd"].setup({
+  filetypes = { "c", "cpp" },
   on_attach = on_attach,
   capabilities = cmp_nvim_lsp.default_capabilities(),
   cmd = {
     "clangd",
     "--offset-encoding=utf-16",
   },
-}
+})
 
 -- lspconfig.omnisharp.setup {
 --   capabilities = capabilities,
@@ -83,7 +97,7 @@ lspconfig["clangd"].setup {
 --   end,
 -- }
 
-lspconfig["gdscript"].setup {
-    	name = "godot",
-    	cmd = vim.lsp.rpc.connect("127.0.0.1", "6005"),
-}
+lspconfig["gdscript"].setup({
+  name = "godot",
+  cmd = vim.lsp.rpc.connect("127.0.0.1", "6005"),
+})
