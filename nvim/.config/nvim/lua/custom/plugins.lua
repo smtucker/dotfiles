@@ -89,6 +89,18 @@ local plugins = {
 
   -- General
   {
+    "smtucker/pandoc-this.nvim",
+    ft = "markdown",
+    opts = {                   -- Defaults shown
+      pandoc_path = "pandoc",
+      open_cmd_path = "xdg-open", -- or 'start' for windows
+      defaults = {
+        output_type = "docx",
+        args = { "--standalone" }, -- Additional arguments to be passed to pandoc
+      },
+    },
+  },
+  {
     "seblj/roslyn.nvim",
     ft = "cs",
     cmd = "Roslyn",
@@ -365,16 +377,23 @@ local plugins = {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
       heading = {
-        backgrounds = { 'highlight_1', 'highlight_2', 'highlight_3', 'highlight_4', 'highlight_5', 'highlight_6' },
+        backgrounds = {
+          "highlight_1",
+          "highlight_2",
+          "highlight_3",
+          "highlight_4",
+          "highlight_5",
+          "highlight_6",
+        },
       },
       bullet = {
-        highlight = 'highlight_4',
+        highlight = "highlight_4",
       },
     },
     ft = { "markdown", "md" },
