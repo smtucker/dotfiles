@@ -383,6 +383,8 @@ local plugins = {
     ---@type render.md.UserConfig
     opts = {
       heading = {
+        enabled = false,
+        render_modes = true,
         backgrounds = {
           "highlight_1",
           "highlight_2",
@@ -394,6 +396,9 @@ local plugins = {
       },
       bullet = {
         highlight = "highlight_4",
+      },
+      indent = {
+        enabled = true,
       },
     },
     ft = { "markdown", "md" },
