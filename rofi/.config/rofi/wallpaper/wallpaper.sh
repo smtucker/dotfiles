@@ -57,11 +57,11 @@ function NOTIFY() {
 function SET_MODE() {
     case "$1" in
         Light)
-            LIGHTMODE=lighten
+            LIGHTMODE="-l"
             ;;
         Dark)
-            LIGHTMODE=darken
-            REVERSE="-reverse"
+            LIGHTMODE=""
+            # REVERSE="-reverse"
             ;;
         *) CRIT_ERROR "Invalid mode" ; exit ;;
     esac
@@ -101,7 +101,7 @@ function PRINT_USAGE() {
 
 function GENERATE_COLORS() {
     NOTIFY "Generating colors..." 5
-    wal --cols16 "$LIGHTMODE" -i "${CONFIG[WALLPAPER_DIR]}/$P"
+    wal --cols16 lighten $LIGHTMODE -i "${CONFIG[WALLPAPER_DIR]}/$P"
 
     cp ~/.cache/wal/colors-waybar.css ~/.config/waybar/colors.css
     cp ~/.cache/wal/colors-rofi-dark.rasi ~/.config/rofi/shared/colors.rasi
