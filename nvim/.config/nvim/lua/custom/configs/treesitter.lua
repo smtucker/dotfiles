@@ -8,6 +8,7 @@ local M = {
     "typescript",
     "tsx",
     "c",
+    "c_sharp",
     "markdown",
     "markdown_inline",
     "bash",
