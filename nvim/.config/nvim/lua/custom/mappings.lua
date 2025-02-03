@@ -54,7 +54,7 @@ M.lspsaga = {
 M.trouble = {
   n = {
     ["<leader>lq"] = { "<cmd> Trouble diagnostics <CR>", "Toggle trouble diagnostics" },
-  }
+  },
 }
 
 M.general = {
@@ -90,6 +90,25 @@ M.general = {
   },
   v = {
     [">"] = { ">gv", "indent" },
+  },
+  i = {
+    ["<C-f>"] = {
+      function()
+        vim.lsp.buf.format({ async = false})
+        -- Get the line number of the last line
+        local last_line = vim.fn.line("$")
+
+        -- Go to the last line
+        vim.fn.cursor(last_line, 0)
+
+        -- Get the number of columns in the last line
+        local last_col = vim.fn.col("$")
+
+        -- Go to the last column (adjusting for 0-based index)
+        vim.fn.cursor(last_line, last_col)
+      end,
+      "Insert LSP formating",
+    },
   },
 }
 
