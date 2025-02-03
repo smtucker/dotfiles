@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
 })
 
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-  pattern = {"*.cs"},
+  pattern = {"*.cs", "*.gd", "*.tres", "*.tscn"},
   command = "setlocal tabstop=4 shiftwidth=4 noexpandtab"
 })
 
