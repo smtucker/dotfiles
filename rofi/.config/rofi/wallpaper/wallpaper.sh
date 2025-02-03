@@ -61,7 +61,7 @@ function SET_MODE() {
             ;;
         Dark)
             LIGHTMODE=""
-            # REVERSE="-reverse"
+            REVERSE="-reverse"
             ;;
         *) CRIT_ERROR "Invalid mode" ; exit ;;
     esac
