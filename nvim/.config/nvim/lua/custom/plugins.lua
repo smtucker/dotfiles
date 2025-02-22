@@ -342,7 +342,7 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter",
       "echasnovski/mini.diff",
     },
-    ft = { "go", "python", "lua", "rust", "c", "cpp", "cs", "sh", "zsh", "proto" },
+    ft = { "go", "python", "lua", "rust", "c", "cpp", "cs", "sh", "zsh", "proto", "vue" },
     config = function()
       require("mini.diff").setup()
       require("codecompanion").setup({
@@ -381,26 +381,7 @@ local plugins = {
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
-    opts = {
-      heading = {
-        enabled = false,
-        render_modes = true,
-        backgrounds = {
-          "highlight_1",
-          "highlight_2",
-          "highlight_3",
-          "highlight_4",
-          "highlight_5",
-          "highlight_6",
-        },
-      },
-      bullet = {
-        highlight = "highlight_4",
-      },
-      indent = {
-        enabled = true,
-      },
-    },
+    opts = require("custom.configs.render-markdown"),
     ft = { "markdown", "md" },
   },
   -- {
