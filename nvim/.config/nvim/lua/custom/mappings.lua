@@ -136,6 +136,7 @@ M.telescope = {
     ["<leader>fT"] = { "<cmd> Telescope themes <CR>", "Telescope Themes" },
     ["<leader>fs"] = { "<cmd> Telescope session-lens <CR>", "Session select" },
     ["<leader>fn"] = { "<cmd> Telescope find_files search_dirs=~/notes <CR>", "Telescope notes" },
+    ["<leader>fd"] = { "<cmd> Telescope diagnostics <CR>", "Telescope diagnostics" },
   },
 }
 
