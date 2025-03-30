@@ -4,6 +4,9 @@ local M = {
     "lua-language-server",
     "stylua",
 
+    -- shell
+    "bash-language-server",
+
     -- web dev stuff
     "css-lsp",
     "html-lsp",

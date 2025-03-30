@@ -8,7 +8,7 @@ local plugins = {
     dependencies = {
       -- format & linting
       {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         config = function()
           require("custom.configs.null-ls")
         end,
@@ -91,7 +91,7 @@ local plugins = {
   {
     "smtucker/pandoc-this.nvim",
     ft = "markdown",
-    opts = {                   -- Defaults shown
+    opts = {                      -- Defaults shown
       pandoc_path = "pandoc",
       open_cmd_path = "xdg-open", -- or 'start' for windows
       defaults = {
@@ -167,14 +167,14 @@ local plugins = {
     },
     config = function()
       require("tabout").setup({
-        tabkey = "<Tab>",         -- key to trigger tabout, set to an empty string to disable
+        tabkey = "<Tab>",             -- key to trigger tabout, set to an empty string to disable
         backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
-        act_as_tab = true,        -- shift content if tab out is not possible
-        act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-        default_tab = "<C-t>",    -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-        default_shift_tab = "<C-d>", -- reverse shift default action,
-        enable_backwards = true,  -- well ...
-        completion = true,        -- if the tabkey is used in a completion pum
+        act_as_tab = true,            -- shift content if tab out is not possible
+        act_as_shift_tab = false,     -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+        default_tab = "<C-t>",        -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+        default_shift_tab = "<C-d>",  -- reverse shift default action,
+        enable_backwards = true,      -- well ...
+        completion = true,            -- if the tabkey is used in a completion pum
         tabouts = {
           { open = "'", close = "'" },
           { open = '"', close = '"' },
@@ -204,7 +204,7 @@ local plugins = {
   {
     "epwalsh/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
-    lazy = false, -- So I get the completion
+    lazy = false,  -- So I get the completion
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",
@@ -219,7 +219,7 @@ local plugins = {
     ft = { "lua", "python", "go", "rust", "c", "cpp", "cs" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons",  -- optional
+      "nvim-tree/nvim-web-devicons",     -- optional
     },
   },
   -- {

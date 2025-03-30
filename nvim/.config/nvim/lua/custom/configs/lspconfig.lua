@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require("lspconfig")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "ts_ls", "basedpyright", "protols" }
+local servers = { "html", "cssls", "ts_ls", "basedpyright", "protols", "bashls", "denols"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup({
@@ -100,5 +100,5 @@ lspconfig["clangd"].setup({
 lspconfig["gdscript"].setup({
   name = "godot",
   filetypes = { "gd", "gdscript" },
-  cmd = vim.lsp.rpc.connect("127.0.0.1", "6005"),
+  cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
 })
