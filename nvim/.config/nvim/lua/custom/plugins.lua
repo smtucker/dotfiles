@@ -12,6 +12,9 @@ local plugins = {
         config = function()
           require("custom.configs.null-ls")
         end,
+        dependencies = {
+          "nvimtools/none-ls-extras.nvim",
+        },
       },
       {
         "folke/neodev.nvim",
@@ -342,7 +345,7 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter",
       "echasnovski/mini.diff",
     },
-    ft = { "go", "python", "lua", "rust", "c", "cpp", "cs", "sh", "zsh", "proto", "vue" },
+    ft = { "go", "python", "lua", "rust", "c", "cpp", "cs", "sh", "zsh", "proto", "vue", "js", "ts", "css" },
     config = function()
       require("mini.diff").setup()
       require("codecompanion").setup({
@@ -365,7 +368,7 @@ local plugins = {
             return require("codecompanion.adapters").extend("gemini", {
               schema = {
                 model = {
-                  default = "gemini-1.5-pro",
+                  default = "gemini-2.5-pro-exp-03-25",
                 },
               },
             })

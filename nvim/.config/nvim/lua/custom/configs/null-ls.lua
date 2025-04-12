@@ -5,8 +5,7 @@ local b = null_ls.builtins
 local sources = {
   -- webdev stuff
   b.formatting.prettier.with {
-    filetypes = { "html", "markdown", "css", "yaml" },
-    extra = { "toml" },
+    extra_filetypes = { "toml", "md" },
   }, -- so prettier works only on these filetypes
 
   -- Code actions
