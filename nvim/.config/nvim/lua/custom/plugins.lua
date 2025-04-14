@@ -345,7 +345,7 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter",
       "echasnovski/mini.diff",
     },
-    ft = { "go", "python", "lua", "rust", "c", "cpp", "cs", "sh", "zsh", "proto", "vue", "js", "ts", "css" },
+    ft = { "go", "python", "lua", "rust", "c", "cpp", "cs", "sh", "zsh", "proto", "vue", "js", "ts", "css", "markdown", "md" },
     config = function()
       require("mini.diff").setup()
       require("codecompanion").setup({
