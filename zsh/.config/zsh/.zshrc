@@ -129,6 +129,7 @@ alias help=run-help
 alias l="lsd"
 alias la='lsd -a'
 alias lla='lsd -la'
+alias slj='sudo lazyjournal'
 
 function cd() {
   builtin cd "$@"
