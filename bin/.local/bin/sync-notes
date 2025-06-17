@@ -23,16 +23,16 @@ VERBOSE=""
 
 case $1 in
   "up")
-    rsync -azuP$VERBOSE --mkpath --delete ~/notes/$FILE smtucker:~/notes$FILE
+    rsync -azuP$VERBOSE --mkpath --delete ~/notes/$FILE racknerd:~/notes$FILE
     ;;
   "down")
-    rsync -azuP$VERBOSE --mkpath --delete smtucker:~/notes/$FILE ~/notes$FILE
+    rsync -azuP$VERBOSE --mkpath --delete racknerd:~/notes/$FILE ~/notes$FILE
     ;;
   "dry")
     echo -e "\n${CYAN}Dry run sending notes$FILE ...${NC}\n"
-    rsync -avznu --stats --delete ~/notes/$FILE smtucker:~/notes$FILE
+    rsync -avznu --stats --delete ~/notes/$FILE racknerd:~/notes$FILE
     echo -e "\n\n${CYAN}Dry run grabbing notes$FILE...\n${NC}"
-    rsync -avznu --stats --delete smtucker:~/notes/$FILE ~/notes$FILE
+    rsync -avznu --stats --delete racknerd:~/notes/$FILE ~/notes$FILE
     ;;
   *)
     echo "Unknown option: $1"
