@@ -10,7 +10,7 @@ NC='\033[0m' # No Color
 # Configuration
 #
 declare -A CONFIG=()
-CONFIG["THEMENAME"]="oomox-xresources-reverse"
+CONFIG["THEMENAME"]="wallpaper-switcher"
 CONFIG["BASE16CLI"]="/opt/oomox/plugins/base16/cli.py"
 CONFIG["OOMOXPLUGINDIR"]="/opt/oomox/plugins/"
 CONFIG["QT_STYLE_TEMPLATE"]="${CONFIG[OOMOXPLUGINDIR]}/base16/templates/qt-oomox-styleplugin/templates/default.mustache"
@@ -58,10 +58,12 @@ function SET_MODE() {
     case "$1" in
         Light)
             LIGHTMODE="-l"
+            dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
             ;;
         Dark)
             LIGHTMODE=""
             REVERSE="-reverse"
+            dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
             ;;
         *) CRIT_ERROR "Invalid mode" ; exit ;;
     esac
