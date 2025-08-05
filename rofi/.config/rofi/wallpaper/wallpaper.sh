@@ -130,6 +130,7 @@ function GENERATE_GTK_THEMES() {
     oomox-cli "${CONFIG[OOMOXCOLOR]}" -o "${CONFIG[THEMENAME]}"
 
     NOTIFY "Generating Gtk4 theme..." 35
+    mkdir -p "$HOME/.themes/${CONFIG[THEMENAME]}/gtk-4.0"
     python "${CONFIG[BASE16CLI]}" "${CONFIG[GTK4_TEMPLATE]}" "${CONFIG[TEMPLATE]}" > "$HOME/.themes/${CONFIG[THEMENAME]}/gtk-4.0/gtk.css"
     sed -i '/^Import Colors/d' "$HOME/.themes/${CONFIG[THEMENAME]}/gtk-4.0/gtk.css"
     cp "$HOME/.themes/${CONFIG[THEMENAME]}/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
