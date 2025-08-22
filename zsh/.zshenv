@@ -15,3 +15,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export OOMOX_QTSTYLEPLUGIN_THEME=oomox
 
 source ~/.apikeys/gemini
+source ~/.apikeys/openrouter
