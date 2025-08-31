@@ -46,6 +46,14 @@ local plugins = {
   {
     "williamboman/mason.nvim",
     opts = require("custom.configs.mason"),
+    init = function()
+      require("mason").setup({
+        registries = {
+            "github:mason-org/mason-registry",
+            "github:Crashdummyy/mason-registry",
+        },
+      })
+    end,
   },
 
   {
@@ -352,9 +360,11 @@ local plugins = {
         strategies = {
           chat = {
             adapter = "gemini",
+            model = "gemini-2.5-pro",
           },
           inline = {
             adapter = "gemini",
+            model = "gemini-2.5-pro",
           },
         },
         -- display = {
@@ -363,17 +373,31 @@ local plugins = {
         --     -- provider = "mini_diff",
         --   },
         -- },
-        adapters = {
-          gemini = function()
-            return require("codecompanion.adapters").extend("gemini", {
-              schema = {
-                model = {
-                  default = "gemini-2.5-pro",
+        acp = {
+          gemini_cli = function()
+            return require("codecompanion.acp").extend("gemini-cli", {
+              commands = {
+                flash = {
+                  "gemini",
+                  "--experimental-acp",
+                  "-m",
+                  "gemini-2.5-flash",
                 },
+                pro = {
+                  "gemini",
+                  "--experimental-acp",
+                  "-m",
+                  "gemini-2.5-pro",
+                },
+              },
+              defaults = {
+                -- auth_method = "gemini-api-key", -- "oauth-personal" | "gemini-api-key" | "vertex-ai"
+                -- auth_method = "oauth-personal",
+                auth_method = "vertex-ai",
               },
             })
           end,
-        },
+        }
       })
     end,
   },
