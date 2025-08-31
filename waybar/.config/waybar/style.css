@@ -5,7 +5,7 @@
   border-radius: 0;
   min-height: 0;
   font-family: JetBrainsMono Nerd Font;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -67,6 +67,7 @@ window#waybar.hidden {
 #network,
 #power-profiles-daemon,
 #clock,
+#custom-notifications,
 #tray {
   border-radius: 4px;
   margin: 6px 3px;
@@ -99,6 +100,7 @@ window#waybar.hidden {
 }
 
 #power-profiles-daemon,
+#custom-notifications,
 #battery {
   background-color: @background;
   color: @color14;
