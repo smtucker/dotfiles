@@ -8,7 +8,7 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 # Configuration
-#
+
 declare -A CONFIG=()
 CONFIG["THEMENAME"]="wallpaper-switcher"
 CONFIG["BASE16CLI"]="/opt/oomox/plugins/base16/cli.py"
@@ -53,8 +53,7 @@ function NOTIFY() {
     fi
 }
 
-
-function SET_MODE() {
+function SET_DARK() {
     case "$1" in
         Light)
             LIGHTMODE="-l"
@@ -119,9 +118,6 @@ function RELOAD_APPS() {
 
     pkill waybar
     hyprctl dispatch exec "waybar"
-
-    pkill swaybg
-    hyprctl dispatch exec "swaybg -i ${CONFIG[WALLPAPER_DIR]}/$P"
 }
 
 
@@ -154,43 +150,72 @@ function GENERATE_ICONS() {
     /opt/oomox/plugins/icons_gnomecolors/gnome-colors-icon-theme/change_color.sh -o "${CONFIG[THEMENAME]}" "${CONFIG[OOMOXCOLOR]}"
 }
 
+function CHANGE_THEMES()
+{
+    DARK=$(printf "Light\nDark\n" | rofi -dmenu -theme "${SCRIPT_DIR}"/dark-select.rasi)
+    SET_DARK "$DARK"
+    
+    while getopts "rgqid" opt; do
+        case $opt in
+            r)
+                SKIP_RELOAD=1
+                ;;
+            g)
+                SKIP_GTK=1
+                ;;
+            q)
+                SKIP_QT=1
+                ;;
+            i)
+                SKIP_ICONS=1
+                ;;
+            d)
+                DEBUG=1
+                ;;
+            *)
+                PRINT_USAGE
+                notify-send -r "$NID" "Error" "Invalid option: $opt" -a "Wallpaper Switcher" -w -i error
+                ;;
+        esac
+    done
+
+    GENERATE_COLORS
+    [ -n "$SKIP_RELOAD" ] || RELOAD_APPS
+    [ -n "$SKIP_GTK" ] || GENERATE_GTK_THEMES
+    [ -n "$SKIP_QT" ] || GENERATE_QT_STYLE
+    [ -n "$SKIP_ICONS" ] || GENERATE_ICONS
+}
+
+function CHANGE_WALLPAPER()
+{
+    pkill swaybg
+    hyprctl dispatch exec "swaybg -i ${CONFIG[WALLPAPER_DIR]}/$P"
+}
+
+function CHANGE_BOTH()
+{
+    CHANGE_THEMES
+    CHANGE_WALLPAPER
+}
 
 # --- Main execution ---
+ 
+FUNC=$(printf "Themes\nWallpaper\nBoth\n" | rofi -dmenu -theme "${SCRIPT_DIR}"/mode-select.rasi)
 
-MODE=$(printf "Light\nDark\n" | rofi -dmenu -theme "${SCRIPT_DIR}"/mode-select.rasi)
-SET_MODE "$MODE"
 
 P=$(SELECT_WALLPAPER)
 
-while getopts "rgqid" opt; do
-    case $opt in
-        r)
-            SKIP_RELOAD=1
-            ;;
-        g)
-            SKIP_GTK=1
-            ;;
-        q)
-            SKIP_QT=1
-            ;;
-        i)
-            SKIP_ICONS=1
-            ;;
-        d)
-            DEBUG=1
-            ;;
-        *)
-            PRINT_USAGE
-            notify-send -r "$NID" "Error" "Invalid option: $opt" -a "Wallpaper Switcher" -w -i error
-            ;;
-    esac
-done
-
-
-GENERATE_COLORS
-[ -n "$SKIP_RELOAD" ] || RELOAD_APPS
-[ -n "$SKIP_GTK" ] || GENERATE_GTK_THEMES
-[ -n "$SKIP_QT" ] || GENERATE_QT_STYLE
-[ -n "$SKIP_ICONS" ] || GENERATE_ICONS
-
-NOTIFY "Wallpaper Changed to $P"
+case $FUNC in
+    "Themes")
+        CHANGE_THEMES
+        NOTIFY "Changed color themes to $P"
+        ;;
+    "Wallpaper")
+        CHANGE_WALLPAPER
+        NOTIFY "Wallpaper Changed to $P"
+        ;;
+    "Both")
+        CHANGE_BOTH
+        NOTIFY "Changed color themes and wallpaper to $P"
+        ;;
+esac

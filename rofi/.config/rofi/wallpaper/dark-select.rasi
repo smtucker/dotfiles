@@ -14,7 +14,7 @@ configuration {
 /* Main Window ------------------------------------------------ */
 window {
     transparent:                 "real";
-    width:                       420px;
+    width:                       300px;
     height:                      150px;
     location:                    center;
     anchor:                      center;
@@ -40,14 +40,14 @@ mainbox {
 textbox {
   expand:                      true;
   horizontal-align:            0.5;
-  content:                       "What are we changing?";
+  content:                       "Dark mode or Light mode";
 }
 
 /* ---- List ---- */
 listview {
     columns:                     1;
-    lines:                       3;
-    cycle:                       true;
+    lines:                       2;
+    cycle:                       false;
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      horizontal;
