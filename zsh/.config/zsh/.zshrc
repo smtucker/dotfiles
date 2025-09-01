@@ -136,6 +136,9 @@ alias scs='sudo systemctl start'
 alias sce='sudo systemctl stop'
 alias scr='sudo systemctl restart'
 alias scq='sudo systemctl status'
+alias sn='sudo -E -s nvim'
+alias ssys='sudo -E -s isd'
+alias slj='sudo lazyjournal'
 
 function cd() {
   builtin cd "$@"
