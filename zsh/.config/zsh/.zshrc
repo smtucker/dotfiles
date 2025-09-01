@@ -130,6 +130,8 @@ alias l="lsd"
 alias la='lsd -a'
 alias lla='lsd -la'
 alias slj='sudo lazyjournal'
+alias fzff='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+alias syst='systemctl-tui'
 
 function cd() {
   builtin cd "$@"
