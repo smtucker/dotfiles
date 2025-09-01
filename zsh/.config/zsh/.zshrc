@@ -132,6 +132,10 @@ alias lla='lsd -la'
 alias slj='sudo lazyjournal'
 alias fzff='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 alias syst='systemctl-tui'
+alias scs='sudo systemctl start'
+alias sce='sudo systemctl stop'
+alias scr='sudo systemctl restart'
+alias scq='sudo systemctl status'
 
 function cd() {
   builtin cd "$@"
