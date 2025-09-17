@@ -66,7 +66,12 @@ M.general = {
       end,
       "Floating diagnostic",
     },
-
+    ["<leader>cr"] = {
+      function()
+        vim.fn.setreg('+', vim.fn.expand('%:.'))
+      end,
+      "Copy realative open buffer path to clipboard",
+    },
     ["<leader>q"] = {
       function()
         vim.diagnostic.setloclist()
