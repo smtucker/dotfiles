@@ -62,7 +62,7 @@ function SET_DARK() {
         Dark)
             LIGHTMODE=""
             REVERSE="-reverse"
-            dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+            dconf write /org/gnome/desktop/interface/color-scheme "'default'"
             ;;
         *) CRIT_ERROR "Invalid mode" ; exit ;;
     esac
