@@ -1,11 +1,18 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
+local function on_attach(client, bufnr)
+  -- Filter out nvimtree buffers
+  if vim.api.nvim_buf_get_option(bufnr, "buftype") == "acmd" then
+    return
+  end
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+end
 
--- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "ts_ls", "basedpyright", "protols", "bashls", "denols"}
-
-for _, lsp in ipairs(servers) do
-  vim.lsp.enable(lsp)
+local servers = { "html", "cssls", "ts_ls", "pyright", "protols", "bashls", "denols"}
+for _, server in ipairs(servers) do
+  vim.lsp.config(server, {
+    on_attach = on_attach,
+    -- You can add other global capabilities or settings here if needed
+  })
+  vim.lsp.enable(server)
 end
 
 --
@@ -33,10 +40,14 @@ vim.lsp.config('gopls', {
     },
   },
 })
+vim.lsp.enable('gopls')
 
-vim.lsp.config('lua_la', {
+vim.lsp.config('lua_ls', {
   on_attach = on_attach,
   on_init = function(client)
+    if not client.workspace_folders or client.workspace_folders == 0 then
+      return true
+    end
     local path = client.workspace_folders[1].name
     if not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc") then
       client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
@@ -69,6 +80,7 @@ vim.lsp.config('lua_la', {
     return true
   end,
 })
+vim.lsp.enable('lua_ls')
 
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 vim.lsp.config('clangd', {
@@ -80,6 +92,7 @@ vim.lsp.config('clangd', {
     "--offset-encoding=utf-16",
   },
 })
+vim.lsp.enable('clangd')
 
 -- lspconfig.omnisharp.setup {
 --   capabilities = capabilities,
@@ -95,5 +108,5 @@ vim.lsp.config('clangd', {
 vim.lsp.config('gdscript', {
   name = "godot",
   filetypes = { "gd", "gdscript" },
-  cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
 })
+vim.lsp.enable('gdscript')

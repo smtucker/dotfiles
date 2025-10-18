@@ -5,6 +5,7 @@ local plugins = {
 
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     dependencies = {
       -- format & linting
       {
