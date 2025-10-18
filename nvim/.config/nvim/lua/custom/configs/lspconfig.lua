@@ -1,16 +1,11 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
-local lspconfig = require("lspconfig")
-
 -- if you just want default config for the servers then put them in a table
 local servers = { "html", "cssls", "ts_ls", "basedpyright", "protols", "bashls", "denols"}
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
+  vim.lsp.enable(lsp)
 end
 
 --
@@ -26,7 +21,7 @@ end
 --   },
 -- }
 
-lspconfig.gopls.setup({
+vim.lsp.config('gopls', {
   cmd = { "gopls", "--remote=auto" },
   settings = {
     gopls = {
@@ -39,7 +34,7 @@ lspconfig.gopls.setup({
   },
 })
 
-lspconfig["lua_ls"].setup({
+vim.lsp.config('lua_la', {
   on_attach = on_attach,
   on_init = function(client)
     local path = client.workspace_folders[1].name
@@ -76,7 +71,7 @@ lspconfig["lua_ls"].setup({
 })
 
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-lspconfig["clangd"].setup({
+vim.lsp.config('clangd', {
   filetypes = { "c", "cpp" },
   on_attach = on_attach,
   capabilities = cmp_nvim_lsp.default_capabilities(),
@@ -97,7 +92,7 @@ lspconfig["clangd"].setup({
 --   end,
 -- }
 
-lspconfig["gdscript"].setup({
+vim.lsp.config('gdscript', {
   name = "godot",
   filetypes = { "gd", "gdscript" },
   cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),

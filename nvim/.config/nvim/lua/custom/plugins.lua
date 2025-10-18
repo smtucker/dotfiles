@@ -280,6 +280,14 @@ local plugins = {
     },
   },
   {
+    "leoluz/nvim-dap-go",
+    ft = "go",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "rcarriga/nvim-dap-ui", },
+    config = function()
+      require("dap-go").setup()
+    end,
+  },
+  {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = "Trouble",
@@ -393,7 +401,7 @@ local plugins = {
               defaults = {
                 -- auth_method = "gemini-api-key", -- "oauth-personal" | "gemini-api-key" | "vertex-ai"
                 -- auth_method = "oauth-personal",
-                auth_method = "vertex-ai",
+                auth_method = "oauth-personal",
               },
             })
           end,
