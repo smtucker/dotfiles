@@ -88,6 +88,8 @@ bindkey '^ ' autosuggest-accept
 
 eval "$(zoxide init zsh)"
 
+source <(fzf --zsh)
+
 # If the wal sequences file exists, source it
 if [ -f $HOME/.cache/wal/sequences ]; then
   cat $HOME/.cache/wal/sequences
