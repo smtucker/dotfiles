@@ -102,7 +102,7 @@ function PRINT_USAGE() {
 
 function GENERATE_COLORS() {
     NOTIFY "Generating colors..." 5
-    wal --cols16 lighten $LIGHTMODE -i "${CONFIG[WALLPAPER_DIR]}/$P"
+    wal --cols16 lighten $LIGHTMODE -i "${CONFIG[WALLPAPER_DIR]}/$P" -n
 
     cp ~/.cache/wal/colors-waybar.css ~/.config/waybar/colors.css
     cp ~/.cache/wal/colors-rofi-dark.rasi ~/.config/rofi/shared/colors.rasi
