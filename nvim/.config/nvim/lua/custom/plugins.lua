@@ -366,7 +366,7 @@ local plugins = {
     config = function()
       require("mini.diff").setup()
       require("codecompanion").setup({
-        strategies = {
+        interactions = {
           chat = {
             adapter = "gemini",
             model = "gemini-2.5-pro",
