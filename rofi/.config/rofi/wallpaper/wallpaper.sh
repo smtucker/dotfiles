@@ -189,6 +189,7 @@ function CHANGE_THEMES()
 function CHANGE_WALLPAPER()
 {
     pkill swaybg
+    echo "${CONFIG[WALLPAPER_DIR]}/$P" > "$HOME/.cache/wal/wal"
     hyprctl dispatch exec "swaybg -i ${CONFIG[WALLPAPER_DIR]}/$P"
 }
 
