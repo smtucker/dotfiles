@@ -166,7 +166,7 @@ local plugins = {
     },
   }, -- Loads vim API into lua lsp
   {
-    "ggandor/leap.nvim",
+    "https://codeberg.org/andyg/leap.nvim",
     init = function()
       require("leap").add_default_mappings()
     end,
