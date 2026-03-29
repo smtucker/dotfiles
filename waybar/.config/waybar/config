@@ -15,6 +15,7 @@
     "modules-right": [
         "tray",
         "custom/notifications",
+        "custom/updates",
         "cpu",
         "memory",
         "pulseaudio",
@@ -180,5 +181,15 @@
         "on-click": "sleep 0.1 && swaync-client -t -sw",
         "on-click-right": "sleep 0.1 && swaync-client -d -sw",
         "escape": true
+    },
+    "custom/updates": {
+        "format": "{} {icon}",
+        "return-type": "json",
+        "format-icons": {
+            "has-updates": "󱍷",
+            "updated": ""
+        },
+        "exec-if": "which waybar-module-pacman-updates",
+        "exec": "waybar-module-pacman-updates --no-zero-output"
     }
 }

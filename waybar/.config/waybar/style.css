@@ -68,6 +68,7 @@ window#waybar.hidden {
 #power-profiles-daemon,
 #clock,
 #custom-notifications,
+#custom-updates,
 #tray {
   border-radius: 4px;
   margin: 6px 3px;
@@ -101,6 +102,7 @@ window#waybar.hidden {
 
 #power-profiles-daemon,
 #custom-notifications,
+#custom-updates,
 #battery {
   background-color: @background;
   color: @color14;
