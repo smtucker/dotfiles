@@ -4,16 +4,33 @@ end
 
 -- For syncing notes when opening or writing to notes folder
 local notes_folder = vim.fn.expand("~/notes") .. "/*"
-vim.api.nvim_create_autocmd({ "BufReadPre" }, {
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufWritePost" }, {
   group = augroup("sync_notes"),
   pattern = notes_folder,
-  command = "!sync-notes down %",
-})
+  callback = function(args)
+    local script_path = "/home/shelby/.local/bin/sync-notes"
+    local filename = vim.fn.fnamemodify(args.file, ":p") -- Use full path, because sync-notes strips it
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = augroup("sync_notes"),
-  pattern = notes_folder,
-  command = "!sync-notes up %",
+    if args.event == "BufReadPre" then
+      local out = vim.system({ script_path, "down", filename }, { text = true }):wait()
+      if out.code == 0 then
+        vim.notify("Pulled latest: " .. filename, vim.log.levels.INFO, { title = "Notes Sync" })
+      else
+        vim.notify("Pull failed for " .. filename .. "\n" .. (out.stderr or "Unknown error"), vim.log.levels.ERROR, { title = "Notes Sync Error" })
+      end
+
+    elseif args.event == "BufWritePost" then
+      vim.system({ script_path, "up", filename }, { text = true }, function(out)
+        vim.schedule(function()
+          if out.code == 0 then
+            vim.notify("Pushed successfully: " .. filename, vim.log.levels.INFO, { title = "Notes Sync" })
+          else
+            vim.notify("Push failed for " .. filename .. "\n" .. (out.stderr or "Unknown error"), vim.log.levels.ERROR, { title = "Notes Sync Error" })
+          end
+        end)
+      end)
+    end
+  end,
 })
 
 -- Check if we need to reload the file when it changed
