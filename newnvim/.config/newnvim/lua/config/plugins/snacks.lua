@@ -8,7 +8,11 @@ Snacks.setup({
 	dim = { enabled = true },
 	explorer = { enabled = false, auto_close = false, replace_netrw = true},
 	image = { enabled = true },
-	indent = { enabled = true },
+	indent = { enabled = true,
+    filter = function(buf)
+      -- disable for markdown files
+      return vim.bo[buf].filetype ~= "markdown"
+    end,},
 	input = { enabled = false },
 	layout = { enabled = true },
 	notifier = { enabled = false },
