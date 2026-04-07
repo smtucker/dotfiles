@@ -40,6 +40,20 @@ map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
+-- Expanding and shrinking selection
+map("x", "<cr>",
+  function ()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("an", true, false, true), "x", false)
+  end,
+  { silent = true, desc = "Expand Selection" }
+)
+map("x", "<bs>",
+  function ()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("in", true, false, true), "x", false)
+  end,
+  { silent = true, desc = "Shrink Selection" }
+)
+
 -- ═══════════════════════════════════════════════════════════
 -- SEARCH & NAVIGATION (ergonomic improvements)
 -- ═══════════════════════════════════════════════════════════

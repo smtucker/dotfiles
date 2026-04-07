@@ -46,13 +46,14 @@ vim.pack.add({
 
 require('config.plugins.whichkey')
 
-require('lualine').setup({})
 require("leap").add_default_mappings()
 require('codeium').setup({
   enable_cmp_source = false,
 })
 require('lazydev').setup()
 require('nvim-autopairs').setup()
+require('lualine').setup()
+-- require('config.plugins.lualine')
 require('config.plugins.nvim-tree')
 require('config.plugins.barbar')
 require('config.plugins.treesitter')

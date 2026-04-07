@@ -2,6 +2,20 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("user_" .. name, { clear = true })
 end
 
+-- For syncing notes when opening or writing to notes folder
+local notes_folder = vim.fn.expand("~/notes") .. "/*"
+vim.api.nvim_create_autocmd({ "BufReadPre" }, {
+  group = augroup("sync_notes"),
+  pattern = notes_folder,
+  command = "!sync-notes down %",
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = augroup("sync_notes"),
+  pattern = notes_folder,
+  command = "!sync-notes up %",
+})
+
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup("checktime"),

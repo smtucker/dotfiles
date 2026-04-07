@@ -172,7 +172,7 @@ local   keymaps = {
     -- { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
     { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
     { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
-    { "<leader>fn", function() Snacks.picker.files({ cwd = "/home/shelby/notes/" }) end, desc = "Fine Note" },
+    { "<leader>fn", function() Snacks.picker.files({ cwd = "/home/shelby/notes/" }) end, desc = "Find Note" },
     -- git
     { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branch Picker" },
     { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log Search Picker" },
@@ -192,6 +192,7 @@ local   keymaps = {
     { "<leader>fa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
     { "<leader>fl", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
     -- { "<leader>fc", function() Snacks.picker.command_history() end, desc = "Command History" },
+    { "<leader>fs", function() Snacks.picker.spelling() end, desc = "Spelling" },
     { "<leader>fc", function() Snacks.picker.commands() end, desc = "Commands" },
     { "<leader>lfD", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
     { "<leader>lfd", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },

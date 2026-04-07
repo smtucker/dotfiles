@@ -66,7 +66,7 @@ setup()
 
 local map = vim.keymap.set
 
-map("n", "<leader>fn", "<cmd> Obsidian search <CR>", { desc = "ObsidianSearch" })
+map("n", "<leader>fN", "<cmd> Obsidian search <CR>", { desc = "ObsidianSearch" })
 map("n", "<leader>oc", "<cmd> Obsidian ToggleCheckbox <CR>", { desc = "ObsidianToggleCheckbox" })
 map("n", "<leader>ob", "<cmd> Obsidian backlinks <CR>", { desc = "ObsidianBacklinks" })
 map("n", "<leader>oo", ":Obsidian open ", { desc = "ObsidianOpen", silent = false })
