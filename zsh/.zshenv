@@ -16,3 +16,4 @@ export OOMOX_QTSTYLEPLUGIN_THEME=oomox
 
 source ~/.apikeys/gemini
 source ~/.apikeys/openrouter
+. "/home/shelby/.local/share/bob/env/env.sh"
