@@ -1,8 +1,15 @@
-vim.pack.add({"https://github.com/scottmckendry/cyberdream.nvim"})
-require("cyberdream").setup({
+vim.pack.add({"https://github.com/maxmx03/fluoromachine.nvim"})
+require("fluoromachine").setup({
   transparent = true,
   highlights = {
   },
+})
+vim.cmd("colorscheme fluoromachine")
+
+vim.pack.add({"https://github.com/scottmckendry/cyberdream.nvim"})
+require("cyberdream").setup({
+  glow = true,
+  transparent = true,
 })
 vim.cmd("colorscheme cyberdream")
 
