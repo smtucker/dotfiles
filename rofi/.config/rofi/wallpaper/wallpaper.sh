@@ -19,6 +19,7 @@ CONFIG["TEMPLATE"]="${CONFIG[OOMOXPLUGINDIR]}/import_xresources/colors/xresource
 CONFIG["QT_STYLE_THEMES"]="$HOME/.config/oomox-qtstyleplugin/themes"
 CONFIG["OOMOXCOLOR"]="/opt/oomox/scripted_colors/xresources/xresources" # Default color, no reverse
 CONFIG["WALLPAPER_DIR"]="$HOME/Pictures/wallpapers" # Wallpaper directory
+CONFIG["THEME_DIR"]="$HOME/.cache/wal/schemes"
 
 ## --- Functions ---
 
@@ -103,12 +104,6 @@ function PRINT_USAGE() {
 function GENERATE_COLORS() {
     NOTIFY "Generating colors..." 5
     "$HOME/.local/bin/wal" --backend colorz --cols16 $LIGHTMODE -i "${CONFIG[WALLPAPER_DIR]}/$P" -n
-
-    cp ~/.cache/wal/colors-waybar.css ~/.config/waybar/colors.css
-    cp ~/.cache/wal/colors-rofi-dark.rasi ~/.config/rofi/shared/colors.rasi
-    cp ~/.cache/wal/yazi-theme.toml ~/.config/yazi/theme.toml
-    cp ~/.cache/wal/colors.Xresources ~/.Xresources
-    xrdb -merge ~/.Xresources
 }
 
 
@@ -150,40 +145,91 @@ function GENERATE_ICONS() {
     /opt/oomox/plugins/icons_gnomecolors/gnome-colors-icon-theme/change_color.sh -o "${CONFIG[THEMENAME]}" "${CONFIG[OOMOXCOLOR]}"
 }
 
-function CHANGE_THEMES()
-{
+function APPLY_THEME() {
+  while getopts "rgqid" opt; do
+      case $opt in
+          r)
+              SKIP_RELOAD=1
+              ;;
+          g)
+              SKIP_GTK=1
+              ;;
+          q)
+              SKIP_QT=1
+              ;;
+          i)
+              SKIP_ICONS=1
+              ;;
+          d)
+              DEBUG=1
+              ;;
+          *)
+              PRINT_USAGE
+              notify-send -r "$NID" "Error" "Invalid option: $opt" -a "Wallpaper Switcher" -w -i error
+              ;;
+      esac
+  done
+
+  cp ~/.cache/wal/colors-waybar.css ~/.config/waybar/colors.css
+  cp ~/.cache/wal/colors-rofi-dark.rasi ~/.config/rofi/shared/colors.rasi
+  cp ~/.cache/wal/yazi-theme.toml ~/.config/yazi/theme.toml
+  cp ~/.cache/wal/colors.Xresources ~/.Xresources
+  xrdb -merge ~/.Xresources
+  [ -n "$SKIP_RELOAD" ] || RELOAD_APPS
+  [ -n "$SKIP_GTK" ] || GENERATE_GTK_THEMES
+  [ -n "$SKIP_QT" ] || GENERATE_QT_STYLE
+  [ -n "$SKIP_ICONS" ] || GENERATE_ICONS
+}
+
+function CHANGE_THEMES() {
     DARK=$(printf "Light\nDark\n" | rofi -dmenu -theme "${SCRIPT_DIR}"/dark-select.rasi)
     SET_DARK "$DARK"
-    
-    while getopts "rgqid" opt; do
-        case $opt in
-            r)
-                SKIP_RELOAD=1
-                ;;
-            g)
-                SKIP_GTK=1
-                ;;
-            q)
-                SKIP_QT=1
-                ;;
-            i)
-                SKIP_ICONS=1
-                ;;
-            d)
-                DEBUG=1
-                ;;
-            *)
-                PRINT_USAGE
-                notify-send -r "$NID" "Error" "Invalid option: $opt" -a "Wallpaper Switcher" -w -i error
-                ;;
-        esac
-    done
 
     GENERATE_COLORS
-    [ -n "$SKIP_RELOAD" ] || RELOAD_APPS
-    [ -n "$SKIP_GTK" ] || GENERATE_GTK_THEMES
-    [ -n "$SKIP_QT" ] || GENERATE_QT_STYLE
-    [ -n "$SKIP_ICONS" ] || GENERATE_ICONS
+    APPLY_THEME
+}
+
+function LOAD_PREMADE() {
+  # TODO: Load wether or not it's dark from theme
+  SET_DARK "Dark"
+
+  declare -A theme_files
+  menu_items=""
+
+  for file in ${CONFIG["THEME_DIR"]}/*.json; do
+      wp=$(jq -r '.wallpaper' "$file")
+      theme_name=$(basename "$wp")
+      
+      # Extract a few accent colors to show in the preview using jq
+      c0=$(jq -r '.colors.color0' "$file")
+      c1=$(jq -r '.colors.color1' "$file")
+      c2=$(jq -r '.colors.color2' "$file")
+      c3=$(jq -r '.colors.color3' "$file")
+      c4=$(jq -r '.colors.color4' "$file")
+      c5=$(jq -r '.colors.color5' "$file")
+      c6=$(jq -r '.colors.color6' "$file")
+      c7=$(jq -r '.colors.color7' "$file")
+      
+      palette="<span color='$c0'>██</span> <span color='$c1'>██</span> <span color='$c2'>██</span> <span color='$c3'>██</span> <span color='$c4'>██</span> <span color='$c5'>██</span> <span color='$c6'>██</span> <span color='$c7'>██</span>"
+      
+      line="${theme_name}\t${palette}"
+      
+      menu_items+="${line}\n"
+      
+      theme_files["$theme_name"]="$file"
+  done
+
+  selected_line=$(echo -e -n "$menu_items" | rofi -dmenu -i -theme "${SCRIPT_DIR}"/theme-select.rasi -markup-rows -p "Select Theme")
+
+  if [[ -n "$selected_line" ]]; then
+      # Extract just the theme name (everything before the first tab/space)
+      selected_theme=$(echo "$selected_line" | awk '{print $1}')
+      selected_file="${theme_files[$selected_theme]}"
+      
+      "$HOME/.local/bin/wal" --theme "$selected_file" -n
+
+      APPLY_THEME
+  fi
 }
 
 function CHANGE_WALLPAPER()
@@ -203,19 +249,18 @@ function CHANGE_BOTH()
  
 FUNC=$(printf "Themes\nWallpaper\nBoth\n" | rofi -dmenu -theme "${SCRIPT_DIR}"/mode-select.rasi)
 
-
-P=$(SELECT_WALLPAPER)
-
 case $FUNC in
     "Themes")
-        CHANGE_THEMES
+        LOAD_PREMADE
         NOTIFY "Changed color themes to $P"
         ;;
     "Wallpaper")
+        P=$(SELECT_WALLPAPER)
         CHANGE_WALLPAPER
         NOTIFY "Wallpaper Changed to $P"
         ;;
     "Both")
+        P=$(SELECT_WALLPAPER)
         CHANGE_BOTH
         NOTIFY "Changed color themes and wallpaper to $P"
         ;;
