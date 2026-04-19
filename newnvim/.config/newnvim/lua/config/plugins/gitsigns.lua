@@ -46,7 +46,7 @@ require("gitsigns").setup({
 			gs.nav_hunk("first")
 		end, "First Hunk")
 
-		map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+		map({ "n", "v", }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
 		map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
 
 		map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")

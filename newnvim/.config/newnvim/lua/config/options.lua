@@ -34,12 +34,17 @@ opt.incsearch = true -- Show matches as you type
 
 -- Visual settings
 
+-- require('vim._core.ui2').enable({}) -- Required for blink.pairs
+vim.g.pairs = true
+vim.g.blink_pairs = true
+opt.showcmdloc = "statusline"
+opt.showcmd = false
 opt.termguicolors = true -- Enable 24-bit colors
 opt.signcolumn = "yes" -- Always show sign column
 opt.showmatch = true -- Highlight matching brackets
 opt.matchtime = 2 -- How long to show matching bracket
-opt.cmdheight = 1 -- Command line height
--- opt.showmode = false -- Don't show mode in command line
+opt.cmdheight = 0 -- Command line height
+opt.showmode = false -- Don't show mode in command line
 opt.pumheight = 10 -- Popup menu height
 opt.pumblend = 10 -- Popup menu transparency
 opt.winblend = 0 -- Floating window transparency
@@ -142,13 +147,13 @@ opt.fillchars = {
 
 
 opt.jumpoptions = "view"
-opt.laststatus = 3 -- global statusline
+opt.laststatus = 0 -- global statusline
 opt.list = false
 opt.linebreak = true -- Wrap lines at convenient points
 opt.list = true -- Show some invisible characters (tabs...
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 2 -- Size of an indent
-opt.shortmess:append({ W = true, I = true, c = true, C = true })
+opt.shortmess:append({ I = true, c = true, C = true })
 
 
 vim.g.markdown_recommended_style = 0
@@ -170,3 +175,4 @@ vim.filetype.add({
 })
 
 vim.cmd.filetype("plugin indent on")
+

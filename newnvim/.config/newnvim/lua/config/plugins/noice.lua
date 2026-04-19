@@ -4,9 +4,11 @@ end
 
 require("noice").setup({
 	cmdline = {
-		view = "cmdline",
+    -- enabled = false,
+		view = "cmdline_popup",
 	},
 	lsp = {
+    -- progress = { enabled = false },
 		override = {
 			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 			["vim.lsp.util.stylize_markdown"] = true,
@@ -23,13 +25,22 @@ require("noice").setup({
 					{ find = "; before #%d+" },
 				},
 			},
-			view = "mini",
+			view = "notify",
+      opts = { stop = true }
+		},
+		{
+			filter = {
+				event = "msg_show",
+        find = "deprecated",
+			},
+			view = "notify",
+      opts = { stop = true }
 		},
 	},
 	presets = {
-		bottom_search = true,
-		command_palette = true,
-		long_message_to_split = true,
+		-- bottom_search = true,
+		-- command_palette = true,
+		-- long_message_to_split = true,
 	},
 })
 

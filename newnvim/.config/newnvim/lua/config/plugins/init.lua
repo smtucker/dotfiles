@@ -32,6 +32,7 @@ vim.pack.add({
 	},
 
   "https://github.com/windwp/nvim-autopairs",
+  "https://github.com/hiphish/rainbow-delimiters.nvim",
   "https://github.com/gbprod/yanky.nvim",
   "https://github.com/folke/snacks.nvim",
   "https://github.com/obsidian-nvim/obsidian.nvim",
@@ -52,7 +53,10 @@ require('codeium').setup({
 })
 require('lazydev').setup()
 require('nvim-autopairs').setup()
+require('rainbow-delimiters.setup').setup()
 -- require('lualine').setup()
+require('notify').setup()
+require('config.plugins.noice')
 require('config.plugins.lualine')
 -- require('config.plugins.lualine')
 require('config.plugins.nvim-tree')
@@ -61,7 +65,6 @@ require('config.plugins.treesitter')
 require('config.plugins.blink')
 require('config.plugins.diffview')
 require('config.plugins.yanky')
-require('config.plugins.noice')
 require('config.plugins.snacks')
 require('config.plugins.null-ls')
 require('config.plugins.render-markdown')
