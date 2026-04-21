@@ -42,12 +42,13 @@ vim.pack.add({
   "https://github.com/Exafunction/windsurf.nvim",
   "https://github.com/olimorris/codecompanion.nvim",
 
-  "https://codeberg.org/andyg/leap.nvim",
+  -- "https://codeberg.org/andyg/leap.nvim",
+  "https://github.com/folke/flash.nvim",
 })
 
 require('config.plugins.whichkey')
 
-require("leap").add_default_mappings()
+-- require("leap").add_default_mappings()
 require('codeium').setup({
   enable_cmp_source = false,
 })
@@ -68,6 +69,7 @@ require('config.plugins.yanky')
 require('config.plugins.snacks')
 require('config.plugins.null-ls')
 require('config.plugins.render-markdown')
+require('config.plugins.flash')
 
 --- Plugins that get Lazy loaded
 require('config.plugins.grugfar') -- Lazy in file
