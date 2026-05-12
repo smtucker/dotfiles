@@ -88,3 +88,8 @@ vim.lsp.config('gdscript', {
   filetypes = { "gd", "gdscript" },
 })
 vim.lsp.enable('gdscript')
+
+vim.lsp.config('roslyn_ls', {
+  cmd = { "roslyn-language-server", "--logLevel", "Information", "--extensionLogDirectory", "/tmp/roslyn_ls/logs", "--stdio" }
+})
+vim.lsp.enable('roslyn_ls')
