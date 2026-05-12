@@ -36,7 +36,7 @@ vim.pack.add({
   "https://github.com/gbprod/yanky.nvim",
   "https://github.com/folke/snacks.nvim",
   "https://github.com/obsidian-nvim/obsidian.nvim",
-  "https://github.com/seblj/roslyn.nvim",
+  -- "https://github.com/seblj/roslyn.nvim",
 
   --- AI ---
   "https://github.com/Exafunction/windsurf.nvim",
@@ -86,9 +86,9 @@ vim.schedule(function()
   end
 )
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "cs",
-  callback = function()
-    require("roslyn").setup()
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "cs",
+--   callback = function()
+--     require("roslyn").setup()
+--   end,
+-- })
