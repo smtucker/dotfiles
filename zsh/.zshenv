@@ -11,6 +11,7 @@ export PATH="$HOME/.local/bin/:$GOPATH/bin:$BUNPATH:/usr/local/go/bin:$PATH"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
 # . "$HOME/.cargo/env"
 export OOMOX_QTSTYLEPLUGIN_THEME=oomox
 
