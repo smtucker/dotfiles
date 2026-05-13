@@ -1,21 +1,23 @@
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*"
-run  = "git"
+id    = "git" # Remove if Yazi > v26.1.22
+url   = "*"
+run   = "git"
+group = "git"
 
 [[plugin.prepend_fetchers]]
-id   = "git"
-name = "*/"
-run  = "git"
+id    = "git" # Remove if Yazi > v26.1.22
+url   = "*/"
+run   = "git"
+group = "git"
 
 [[plugin.prepend_previewers]]
 mime = "application/{,g}zip"
 run  = "lsar"
 
 [[plugin.prepend_previewers]]
-mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}"
+mime = "application/{tar,bzip*,7z*,xz,rar}"
 run  = "lsar"
 
 [[plugin.prepend_previewers]]
-name = "*.md"
+url = "*.md"
 run  = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
