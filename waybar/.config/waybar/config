@@ -17,6 +17,8 @@
         "custom/notifications",
         "custom/updates",
         "cpu",
+        "temperature",
+        "custom/fan",
         "memory",
         "pulseaudio",
         "backlight",
@@ -191,5 +193,20 @@
         },
         "exec-if": "which waybar-module-pacman-updates",
         "exec": "waybar-module-pacman-updates --no-zero-output"
+    },
+    "custom/fan": {
+        "exec": "sensors | awk '/fan1:/ {print $2}'",
+        "interval": 5,
+        "format": " {}"
+    },
+    "temperature": {
+        "interval": 5,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 95,
+        "warning-threshold": 85,
+        "format-critical": "{icon} {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", "", "", "", ""]
     }
+
 }

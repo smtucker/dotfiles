@@ -69,6 +69,8 @@ window#waybar.hidden {
 #clock,
 #custom-notifications,
 #custom-updates,
+#custom-fan,
+#temperature,
 #tray {
   border-radius: 4px;
   margin: 6px 3px;
@@ -103,9 +105,19 @@ window#waybar.hidden {
 #power-profiles-daemon,
 #custom-notifications,
 #custom-updates,
+#custom-fan,
+#temperature,
 #battery {
   background-color: @background;
   color: @color14;
+}
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+#temperature.warning {
+    background-color: #d4d004;
 }
 
 @keyframes blink {
