@@ -112,7 +112,7 @@ function RELOAD_APPS() {
     swaync-client -rs
 
     pkill waybar
-    hyprctl dispatch exec "waybar"
+    hyprctl dispatch 'hl.exec_cmd("uwsm app -- waybar")'
 }
 
 
@@ -174,6 +174,7 @@ function APPLY_THEME() {
   cp ~/.cache/wal/colors-rofi-dark.rasi ~/.config/rofi/shared/colors.rasi
   cp ~/.cache/wal/yazi-theme.toml ~/.config/yazi/theme.toml
   cp ~/.cache/wal/colors.Xresources ~/.Xresources
+  cp ~/.cache/wal/hyprland-colors.lua ~/.config/hypr/colors.lua
   xrdb -merge ~/.Xresources
   [ -n "$SKIP_RELOAD" ] || RELOAD_APPS
   [ -n "$SKIP_GTK" ] || GENERATE_GTK_THEMES
@@ -236,7 +237,7 @@ function CHANGE_WALLPAPER()
 {
     pkill swaybg
     echo "${CONFIG[WALLPAPER_DIR]}/$P" > "$HOME/.cache/wal/wal"
-    hyprctl dispatch exec "swaybg -i ${CONFIG[WALLPAPER_DIR]}/$P"
+    hyprctl dispatch "hl.exec_cmd('uwsm app -- swaybg -i $(cat ~/.cache/wal/wal)')"
 }
 
 function CHANGE_BOTH()
