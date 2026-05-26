@@ -63,13 +63,6 @@ hl.config({
     },
 })
 
--- hl.plugin("hyprfocus", function()
---     -- enabled = false,
---     mode = "bounce",
---     bounce_strength = 0.97,
---     fade_opacity = 0.85,
---     slide_height = 20,
--- end)
 
 hl.config({
     dwindle = {

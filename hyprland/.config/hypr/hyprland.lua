@@ -58,5 +58,7 @@ end)
 
 
 -- Load additional config
+require("input")
 require("binds")
 require("visuals")
+require("plugins")
