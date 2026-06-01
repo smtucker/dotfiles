@@ -265,4 +265,7 @@ case $FUNC in
         CHANGE_BOTH
         NOTIFY "Changed color themes and wallpaper to $P"
         ;;
+    *)
+        echo "Error: Recieved unknown mode entry"
+        exit 0
 esac
