@@ -7,13 +7,13 @@
     "modules-left": [
         "custom/logo",
         "hyprland/workspaces",
+        "tray",
         "wlr/taskbar"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
-        "tray",
         "custom/notifications",
         "custom/updates",
         "cpu",
@@ -23,8 +23,7 @@
         "pulseaudio",
         "backlight",
         "power-profiles-daemon",
-        "battery",
-        "custom/power"
+        "battery"
     ],
     "wlr/taskbar": {
         "format": "{icon}",
@@ -66,7 +65,7 @@
     },
     "cpu": {
       "interval": 5,
-      "format": "󰍛 {usage}% / {max_frequency}",
+      "format": "󰍛 {usage}%",
       "max-length": 10
     },
     "tray": {
@@ -201,7 +200,7 @@
     },
     "temperature": {
         "interval": 5,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
         "critical-threshold": 95,
         "warning-threshold": 85,
         "format-critical": "{icon} {temperatureC}°C",
