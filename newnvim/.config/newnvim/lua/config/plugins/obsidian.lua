@@ -14,8 +14,8 @@ require("obsidian").setup({
     -- template = "daily.md",
   },
   completion = {
-    nvim_cmp = false,
-    blink = true,
+    -- nvim_cmp = false,
+    -- blink = true,
   },
   templates = {
     subdir = "templates",
