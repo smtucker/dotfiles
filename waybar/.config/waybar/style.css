@@ -70,6 +70,7 @@ window#waybar.hidden {
 #custom-notifications,
 #custom-updates,
 #custom-fan,
+#custom-boring,
 #temperature,
 #tray {
   border-radius: 4px;
@@ -107,6 +108,7 @@ window#waybar.hidden {
 #custom-updates,
 #custom-fan,
 #temperature,
+#custom-boring,
 #battery {
   background-color: @background;
   color: @color14;

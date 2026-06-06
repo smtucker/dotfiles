@@ -1,0 +1,33 @@
+[[tunnels]]
+name = "grimmory"
+local = "6060"
+remote = "localhost:6060"
+host = "oracle"       # automatically matches host against SSH config
+
+[[tunnels]]
+name = "beszel"
+group = "dev"
+local = "8090"
+remote = "localhost:8090"
+host = "oracle"       # automatically matches host against SSH config
+
+[[tunnels]]
+name = "portainer"
+group = "dev"
+local = "9443"
+remote = "localhost:9443"
+host = "oracle"       # automatically matches host against SSH config
+
+[[tunnels]]
+name = "oracle-cockpit"
+group = "dev"
+local = "9090"
+remote = "localhost:9090"
+host = "oracle"       # automatically matches host against SSH config
+
+[[tunnels]]
+name = "racknerd-cockpit"
+group = "dev"
+local = "9090"
+remote = "localhost:9090"
+host = "racknerd"       # automatically matches host against SSH config

@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+OUTPUT=$(boring l | awk '/^[[:digit:]]+/ { lines[++count] = $2 } END { print "Open Tunnels:", count+0; for(i=1; i<=count; i++) print lines[i] }')
+
+OPEN=$(echo "$OUTPUT" | head -n 1 | awk '{ print $3 }')
+
+if [ "$OPEN" = "0" ]; then
+  OPEN=""
+fi
+
+jq -c -n \
+  --arg text "$OPEN" \
+  --arg tooltip "$OUTPUT" \
+  '{"text": $text, "tooltip": $tooltip}'

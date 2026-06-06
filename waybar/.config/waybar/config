@@ -8,6 +8,7 @@
         "custom/logo",
         "hyprland/workspaces",
         "tray",
+        "custom/boring",
         "wlr/taskbar"
     ],
     "modules-center": [
@@ -206,6 +207,13 @@
         "format-critical": "{icon} {temperatureC}°C",
         "format": "{icon} {temperatureC}°C",
         "format-icons": ["", "", "", "", "", ""]
-    }
-
+    },
+    "custom/boring": {
+        "interval": 5,
+        "hide-empty-text": true,
+        "format": "󱘖 {}",
+        "return-type": "json",
+        "exec": "boring-open",
+        "on-click": "~/.config/rofi/boring/boring.sh &",
+    },
 }
