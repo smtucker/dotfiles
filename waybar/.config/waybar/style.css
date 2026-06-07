@@ -39,10 +39,11 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  border: 2px solid @background;
+  border: 3px solid @background;
   border-radius: 4px;
   color: @background;
   background-color: @color2;
+  font-weight: bold;
 }
 
 #workspaces button:hover {
@@ -163,7 +164,7 @@ window#waybar.hidden {
 }
 
 #clock {
-  border: 2px solid @background;
+  border: 3px solid @background;
   border-radius: 8px;
   font-family: JetBrainsMono Nerd Font;
   background-color: @color1;
