@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export NVIM_APPNAME="newnvim"
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export ZDOTDIR="${ZDOTDIR:-"$HOME/.config/zsh"}"
