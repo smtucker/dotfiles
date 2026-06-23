@@ -121,3 +121,17 @@ hl.window_rule({
     },
     opacity = "1 1",
 })
+
+hl.window_rule({
+    match = {
+        class = "luanti",
+    },
+    opacity = "1 1",
+})
+
+hl.window_rule({
+    match = {
+        class = "org.gnome.Loupe",
+    },
+    opacity = "1 1",
+})

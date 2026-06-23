@@ -19,10 +19,10 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   command = "setlocal conceallevel=3"
 })
 
-vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-  pattern = {"*.md"},
-  command = "setlocal conceallevel=1"
-})
+-- vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+--   pattern = {"*.md"},
+--   command = "setlocal conceallevel=1"
+-- })
 
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   pattern = {"*.cs", "*.gd", "*.tres", "*.tscn"},

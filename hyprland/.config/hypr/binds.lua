@@ -19,7 +19,7 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("wlogout -b 5"))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("~/.config/rofi/wallpaper/wallpaper.sh"))
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("~/.config/rofi/clipboard/clipboard.sh"))
-hl.bind("Print", hl.dsp.exec_cmd("grim -g $(slurp)"))
+hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/Pictures/Screenshot-$(date +%Y-%m-%d-%H%M%S).png'))
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("~/.local/bin/rotate-screen"))
 
 -- Hardware Controls

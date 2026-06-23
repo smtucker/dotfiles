@@ -148,7 +148,7 @@ function cd() {
   if [[ -z "$VIRTUAL_ENV" ]] ; then
     ## If env folder is found then activate the vitualenv
       if [[ -d ./.venv ]] ; then
-        source ./.venv/bin/activate
+# source ./.venv/bin/activate  # commented out by conda initialize
       fi
   else
     ## check the current folder belong to earlier VIRTUAL_ENV folder
@@ -205,3 +205,19 @@ function ys() {
 
 # bun completions
 [ -s "/home/shelby/.bun/_bun" ] && source "/home/shelby/.bun/_bun"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
