@@ -131,6 +131,13 @@ hl.window_rule({
 
 hl.window_rule({
     match = {
+        class = "virt-manager",
+    },
+    opacity = "1 1",
+})
+
+hl.window_rule({
+    match = {
         class = "org.gnome.Loupe",
     },
     opacity = "1 1",
