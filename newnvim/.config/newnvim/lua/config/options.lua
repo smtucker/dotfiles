@@ -159,6 +159,32 @@ opt.shortmess:append({ I = true, c = true, C = true })
 vim.g.markdown_recommended_style = 0
 
 
+-- Setup yanking over ssh
+if vim.env.SSH_CONNECTION then
+  vim.g.neovim_remote_background = nil
+  vim.opt.cmdheight = 1
+  vim.opt.laststatus = 3
+  local function ssh_paste()
+    -- Native OSC52 paste can fail over SSH; fallback safely to the unnamed register
+    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+  end
+
+  -- Correctly assign the OSC 52 generator directly to registers
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = ssh_paste,
+      ["*"] = ssh_paste,
+    },
+  }
+end
+
+vim.opt.clipboard = "unnamedplus"
+
 vim.filetype.add({
   extension = {
     env = "dotenv",

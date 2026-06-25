@@ -7,6 +7,7 @@ local function load_yanky()
 	_yanky_loaded = true
 
 	require("yanky").setup({
+    system_clipboard = { sync_with_ring = true }, -- Yank over ssh
 		highlight = {
 			timer = 150,
 		},
