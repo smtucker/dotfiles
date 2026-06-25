@@ -21,7 +21,7 @@ marker_cut      = {{ fg = "#fb4934", bg = "#fb4934" }}
 # Tab
 tab_active   = {{ fg = "{background}", bg = "{foreground}" }}
 tab_inactive = {{ fg = "{color15}", bg = "{color4}" }}
-tab_width    = 1
+# tab_width    = 1
 
 # Border
 border_symbol = "│"
@@ -138,8 +138,8 @@ rules = [
     {{ mime = "application/x-rar",           fg = "{color6}" }},
 
     # Fallback
-    {{ name = "*", fg = "{color15}" }},
-    {{ name = "*/", fg = "{color1}" }}
+    {{ url = "*", fg = "{color15}" }},
+    {{ url = "*/", fg = "{color1}" }}
 ]
 
 # : }}}}}}
