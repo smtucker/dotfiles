@@ -94,10 +94,10 @@ hovered = {{ underline = true }}
 # : Which {{{{{{
 
 [which]
-mask            = {{ bg = "{color4}" }}
+mask            = {{ bg = "{background}" }}
 cand            = {{ fg = "{color1}" }}
 rest            = {{ fg = "{color5}" }}
-desc            = {{ fg = "{color6}" }}
+desc            = {{ fg = "{color9}" }}
 separator       = "  "
 separator_style = {{ fg = "{foreground}" }}
 
